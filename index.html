@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Grand Concours de l'Immo</title>
+<title>Le Grand Concours de l'Immo — version longue</title>
 <style>
 :root{
   --bg1:#071A2B; --bg2:#0B2E44; --teal:#0F766E; --teal2:#14B8A6; --amber:#F59E0B;
@@ -118,90 +118,240 @@ const CONFIG = {
 };
 
 /* ======================================================================
-   2) BANQUE DE QUESTIONS
+   2) BANQUE DE QUESTIONS — Bloc 1 (transaction, location) et Bloc 2 (copropriété)
+   Convention : dans "o", la PREMIÈRE proposition est la bonne réponse.
+   L'ordre est mélangé automatiquement à chaque question (aucun biais de position).
    ====================================================================== */
 const BANK = {
+/* ---------------------------------------------------------------- QCM */
 qcm:[
- {t:"Qui délivre la carte professionnelle de l'agent immobilier ?",o:["La CCI","La préfecture","La mairie","La chambre des notaires"],a:0},
- {t:"Quelle est la durée de validité de la carte professionnelle ?",o:["3 ans","5 ans","10 ans","1 an"],a:0},
- {t:"Quelle mention est obligatoire sur un mandat de vente ?",o:["Le numéro du registre des mandats","La signature du notaire","L'accord du syndic de copropriété","Le visa de la préfecture"],a:0},
- {t:"Après 3 mois, un mandat exclusif peut être dénoncé avec un préavis de…",o:["15 jours","1 mois","3 mois","8 jours"],a:0},
- {t:"Délai de rétractation de l'acquéreur non professionnel d'un logement après le compromis :",o:["10 jours","7 jours","14 jours","15 jours"],a:0},
- {t:"Méthode d'estimation la plus utilisée pour un logement :",o:["Par comparaison","Par capitalisation","Sol + construction","Par le coût de remplacement"],a:0},
- {t:"Quelle base publique recense les prix réels des ventes ?",o:["DVF","DPE","ERP","IRL"],a:0},
- {t:"Quelle surface doit figurer dans l'avant-contrat de vente d'un lot de copropriété ?",o:["La surface Carrez","La surface habitable","La surface utile","La surface au sol"],a:0},
- {t:"Durée de validité d'un DPE réalisé aujourd'hui :",o:["10 ans","5 ans","3 ans","1 an"],a:0},
- {t:"Depuis le 1er janvier 2025, un logement ne peut plus être loué s'il est classé…",o:["G","F","E","D"],a:0},
- {t:"En cas de soupçon de blanchiment, l'agent effectue une déclaration auprès de…",o:["TRACFIN","la DGCCRF","la CNIL","la préfecture"],a:0},
- {t:"Montant maximal du dépôt de garantie d'un logement loué vide :",o:["1 mois de loyer hors charges","2 mois de loyer hors charges","1 mois charges comprises","3 mois de loyer hors charges"],a:0},
- {t:"Durée minimale d'un bail vide consenti par un bailleur personne physique :",o:["3 ans","6 ans","1 an","9 ans"],a:0},
- {t:"Délai de restitution du dépôt de garantie si l'état des lieux de sortie est conforme :",o:["1 mois","2 mois","15 jours","3 mois"],a:0},
- {t:"Quel indice sert à réviser le loyer d'un logement ?",o:["L'IRL","L'ICC","L'ILC","L'ILAT"],a:0},
- {t:"Quel texte fixe la liste des charges récupérables sur le locataire ?",o:["Le décret du 26 août 1987","La loi Hoguet de 1970","Le règlement de copropriété","La loi du 10 juillet 1965"],a:0},
- {t:"Préavis du locataire d'un logement vide situé en zone tendue :",o:["1 mois","3 mois","2 mois","15 jours"],a:0},
- {t:"Quel est le garant public et gratuit proposé par Action Logement ?",o:["Visale","La GLI","Le FSL","Le PTZ"],a:0},
- {t:"Quelle pièce est interdite dans un dossier de candidature locative ?",o:["Un relevé de compte bancaire","Le dernier avis d'imposition","Les trois derniers bulletins de salaire","Une pièce d'identité"],a:0},
- {t:"Plafond des honoraires d'état des lieux à la charge du locataire :",o:["3 € par m²","5 € par m²","8 € par m²","12 € par m²"],a:0},
- {t:"Quelle loi organise le statut de la copropriété ?",o:["La loi du 10 juillet 1965","La loi du 6 juillet 1989","La loi du 2 janvier 1970","La loi du 24 mars 2014"],a:0},
- {t:"Quel document identifie et numérote les lots de copropriété ?",o:["L'état descriptif de division","Le règlement intérieur","Le carnet d'entretien","Le procès-verbal d'AG"],a:0},
- {t:"Délai minimal de convocation à l'assemblée générale (hors urgence) :",o:["21 jours","15 jours","30 jours","8 jours"],a:0},
- {t:"L'approbation des comptes se vote à la majorité de l'article…",o:["24","25","26","22"],a:0},
- {t:"Durée maximale du mandat du syndic :",o:["3 ans","1 an","5 ans","6 ans"],a:0},
- {t:"Quel organe assiste le syndic et contrôle sa gestion ?",o:["Le conseil syndical","Le syndicat des copropriétaires","Le commissaire aux comptes","La commission de conciliation"],a:0},
- {t:"Délai pour contester une décision d'AG (opposant ou défaillant) :",o:["2 mois","1 mois","6 mois","15 jours"],a:0},
- {t:"Cotisation annuelle minimale au fonds de travaux (hors cas particuliers) :",o:["5 % du budget prévisionnel","2 % du budget prévisionnel","10 % du budget prévisionnel","1 % du budget prévisionnel"],a:0},
- {t:"Les charges générales de copropriété sont réparties selon…",o:["les tantièmes généraux","l'utilité pour chaque lot","le nombre d'occupants","la surface Carrez"],a:0},
- {t:"Le syndicat des copropriétaires est…",o:["une personne morale","une association loi 1901","une société civile","un service municipal"],a:0},
- {t:"Dans une promesse unilatérale de vente, qui s'engage ?",o:["Le vendeur seulement","L'acquéreur seulement","Les deux parties","L'agent immobilier"],a:0},
- {t:"Durée minimale légale de la condition suspensive d'obtention de prêt :",o:["1 mois","15 jours","3 mois","10 jours"],a:0},
- {t:"Taux d'endettement maximal recommandé par le HCSF :",o:["35 %","33 %","40 %","50 %"],a:0},
- {t:"Devant qui est signé l'acte authentique de vente ?",o:["Un notaire","Un avocat","Le maire","Le syndic"],a:0},
- {t:"À quoi sert le bon de visite signé par le visiteur ?",o:["Prouver l'intervention de l'agent","Réserver le bien pour 10 jours","Fixer le prix de vente définitif","Remplacer l'offre d'achat écrite"],a:0},
- {t:"Délai laissé au locataire par un commandement de payer visant la clause résolutoire :",o:["6 semaines","2 mois","1 mois","15 jours"],a:0}
+ // Cadre de la profession, déontologie
+ {t:"Quelle loi encadre la profession d'agent immobilier ?",o:["La loi Hoguet de 1970","La loi ALUR de 2014","La loi de 1965","La loi Carrez de 1996"]},
+ {t:"Qui délivre la carte professionnelle de l'agent immobilier ?",o:["La CCI","La préfecture","La mairie","La chambre des notaires"]},
+ {t:"Durée de validité de la carte professionnelle :",o:["3 ans","5 ans","10 ans","1 an"]},
+ {t:"La mention « T » sur la carte professionnelle autorise…",o:["la transaction","la gestion locative","l'activité de syndic","les prestations touristiques"]},
+ {t:"La mention « G » sur la carte professionnelle autorise…",o:["la gestion immobilière","la transaction sur fonds de commerce","l'activité de syndic","l'expertise judiciaire"]},
+ {t:"La mention « S » sur la carte professionnelle autorise…",o:["l'activité de syndic de copropriété","la vente de terrains à bâtir en lotissement","la location saisonnière","le courtage en crédit"]},
+ {t:"Montant minimal de la garantie financière (hors deux premières années) :",o:["110 000 €","30 000 €","50 000 €","250 000 €"]},
+ {t:"Un négociateur salarié justifie de sa mission grâce à…",o:["une attestation d'habilitation","sa propre carte professionnelle","un mandat signé par le client","une inscription au registre du commerce"]},
+ {t:"Durée de formation continue exigée pour renouveler la carte :",o:["42 heures sur 3 ans","20 heures par an","10 heures sur 3 ans","100 heures sur 5 ans"]},
+ {t:"Quelle assurance est obligatoire pour l'agent immobilier ?",o:["La responsabilité civile professionnelle","L'assurance perte d'exploitation de l'agence","L'assurance homme-clé","La garantie des loyers impayés"]},
+ {t:"Avant toute négociation, l'agent doit obligatoirement détenir…",o:["un mandat écrit","un avant-contrat signé","une offre d'achat écrite","un avis de valeur signé"]},
+ {t:"En cas de soupçon de blanchiment, l'agent fait une déclaration à…",o:["TRACFIN","la DGCCRF","la CNIL","la préfecture"]},
+ {t:"Quelle liste permet aux particuliers de refuser le démarchage téléphonique ?",o:["Bloctel","Pages Jaunes","Le fichier FICOBA","Le registre des mandats"]},
+ {t:"Quelle autorité contrôle le respect du RGPD ?",o:["La CNIL","La DGCCRF","L'AMF","La CCI"]},
+ // Prospection, découverte, estimation
+ {t:"La méthode d'estimation la plus utilisée pour un logement est…",o:["la comparaison","la capitalisation","le sol + construction","le coût de remplacement"]},
+ {t:"La méthode par capitalisation repose sur…",o:["le revenu locatif du bien","la valeur du terrain nu","le coût des travaux","le prix d'achat initial"]},
+ {t:"Quelle base publique recense les prix réels des ventes ?",o:["DVF","DPE","ERP","IRL"]},
+ {t:"Un avis de valeur rédigé par un agent immobilier…",o:["n'a pas la valeur d'une expertise","engage le vendeur sur le prix","remplace l'acte authentique","est obligatoire avant tout mandat"]},
+ {t:"Lors de la découverte vendeur, le « mobile » de la vente désigne…",o:["la raison pour laquelle il vend","le prix plancher qu'il accepte","son délai de rétractation","le montant de ses honoraires"]},
+ {t:"Un vendeur pressé par une mutation professionnelle a souvent…",o:["une forte motivation à vendre vite","un prix de vente non négociable","besoin d'un mandat simple","l'obligation de vendre au notaire"]},
+ // Mandat
+ {t:"Quelle mention est obligatoire sur un mandat de vente ?",o:["Le numéro du registre des mandats","La signature du notaire du vendeur","L'accord du syndic","Le visa de la préfecture du département"]},
+ {t:"Après 3 mois, un mandat exclusif peut être dénoncé avec un préavis de…",o:["15 jours","1 mois","3 mois","8 jours"]},
+ {t:"Délai de rétractation d'un mandat signé hors établissement :",o:["14 jours","7 jours","10 jours","30 jours"]},
+ {t:"Dans un mandat exclusif, le vendeur…",o:["ne peut pas confier le bien à une autre agence","peut vendre seul et sans prévenir l'agence","peut signer plusieurs exclusivités en même temps","ne paie jamais d'honoraires"]},
+ {t:"Le registre des mandats doit être…",o:["numéroté de façon chronologique","tenu par le notaire","transmis chaque mois à la CCI","signé par chaque vendeur"]},
+ {t:"Les honoraires de l'agence doivent être affichés…",o:["TTC, en vitrine et sur le site","HT uniquement sur le mandat","seulement à la signature","uniquement sur demande du client"]},
+ // Commercialisation, acquéreur, financement
+ {t:"Une annonce de vente doit obligatoirement indiquer…",o:["les classes énergie et climat","le nom du propriétaire","le montant de la taxe foncière","le prix d'achat du vendeur"]},
+ {t:"Pour un lot en copropriété, l'annonce mentionne notamment…",o:["le montant moyen annuel des charges","le nom du syndic de l'immeuble","la liste des copropriétaires","le procès-verbal de la dernière AG"]},
+ {t:"À quoi sert le bon de visite signé par le visiteur ?",o:["Prouver l'intervention de l'agent","Réserver le bien pour 10 jours","Fixer le prix de vente définitif","Remplacer l'offre d'achat écrite"]},
+ {t:"Taux d'endettement maximal recommandé par le HCSF :",o:["35 %","33 %","40 %","50 %"]},
+ {t:"Durée maximale d'un crédit immobilier selon le HCSF (hors exception) :",o:["25 ans","20 ans","30 ans","35 ans"]},
+ {t:"Après réception de l'offre de prêt, l'emprunteur ne peut l'accepter qu'après…",o:["10 jours de réflexion","48 heures après la signature","1 mois de réflexion","7 jours ouvrés"]},
+ {t:"Depuis la loi Lemoine, l'assurance emprunteur peut être résiliée…",o:["à tout moment","uniquement la première année","tous les 5 ans","jamais avant la fin du prêt"]},
+ {t:"Le reste à vivre désigne…",o:["ce qui reste après les charges et le crédit","l'apport personnel versé par l'acquéreur","le capital restant dû du prêt immobilier","les frais de notaire à prévoir"]},
+ // Avant-contrat, diagnostics, acte
+ {t:"Délai de rétractation de l'acquéreur non professionnel d'un logement :",o:["10 jours","7 jours","14 jours","15 jours"]},
+ {t:"Dans une promesse unilatérale de vente, qui s'engage ?",o:["Le vendeur seulement","L'acquéreur seulement","Les deux parties","L'agent immobilier"]},
+ {t:"Une promesse unilatérale sous seing privé doit être enregistrée dans un délai de…",o:["10 jours","1 mois","3 mois","48 heures"]},
+ {t:"L'indemnité d'immobilisation d'une promesse unilatérale est souvent de…",o:["10 % du prix","1 % du prix","25 % du prix","50 % du prix"]},
+ {t:"Durée minimale légale de la condition suspensive d'obtention de prêt :",o:["1 mois","15 jours","3 mois","10 jours"]},
+ {t:"Quelle surface figure dans l'avant-contrat de vente d'un lot de copropriété ?",o:["La surface Carrez","La surface habitable","La surface utile","La surface au sol"]},
+ {t:"La loi Carrez s'applique aux lots d'au moins…",o:["8 m²","20 m²","12 m²","5 m²"]},
+ {t:"Délai pour agir en diminution du prix après une erreur Carrez :",o:["1 an après l'acte authentique","3 mois après le compromis","5 ans après l'acte","2 mois après la remise des clés"]},
+ {t:"Durée de validité d'un DPE réalisé aujourd'hui :",o:["10 ans","5 ans","3 ans","1 an"]},
+ {t:"Durée de validité de l'état relatif aux termites :",o:["6 mois","1 an","3 ans","10 ans"]},
+ {t:"Durée de validité de l'état des risques (ERP) :",o:["6 mois","3 ans","1 an","10 ans"]},
+ {t:"Le diagnostic électricité est exigé pour une installation de plus de…",o:["15 ans","5 ans","10 ans","30 ans"]},
+ {t:"Le diagnostic amiante concerne les biens dont le permis est antérieur à…",o:["juillet 1997","janvier 1949","janvier 2000","juillet 1975"]},
+ {t:"Le constat de risque d'exposition au plomb concerne les logements construits avant…",o:["1949","1997","1975","1960"]},
+ {t:"Devant qui est signé l'acte authentique de vente ?",o:["Un notaire","Un avocat","Le maire","Le syndic"]},
+ {t:"Les « frais de notaire » dans l'ancien représentent environ…",o:["7 à 8 % du prix","2 à 3 % du prix","15 % du prix","1 % du prix"]},
+ {t:"La plus-value sur la résidence principale est…",o:["exonérée d'impôt","imposée à 19 %","imposée à 36,2 %","exonérée après 5 ans"]},
+ {t:"Exonération totale d'impôt sur le revenu d'une plus-value (hors résidence principale) après…",o:["22 ans de détention","10 ans de détention","30 ans de détention","15 ans de détention"]},
+ // Location
+ {t:"Montant maximal du dépôt de garantie d'un logement loué vide :",o:["1 mois de loyer hors charges","2 mois de loyer hors charges","1 mois charges comprises","3 mois de loyer hors charges"]},
+ {t:"Montant maximal du dépôt de garantie d'un logement meublé :",o:["2 mois de loyer hors charges","1 mois de loyer hors charges","3 mois charges comprises","Aucun dépôt autorisé"]},
+ {t:"Durée minimale d'un bail vide consenti par un bailleur personne physique :",o:["3 ans","6 ans","1 an","9 ans"]},
+ {t:"Durée minimale d'un bail vide consenti par une société (hors SCI familiale) :",o:["6 ans","3 ans","9 ans","1 an"]},
+ {t:"Durée d'un bail mobilité :",o:["De 1 à 10 mois","De 1 à 3 ans","Exactement 9 mois","De 6 à 12 mois"]},
+ {t:"Le bail mobilité permet-il un dépôt de garantie ?",o:["Non, il est interdit","Oui, 1 mois maximum","Oui, 2 mois maximum","Oui, librement fixé"]},
+ {t:"Délai de restitution du dépôt si l'état des lieux de sortie est conforme :",o:["1 mois","2 mois","15 jours","3 mois"]},
+ {t:"Délai de restitution du dépôt en cas de différences à l'état des lieux :",o:["2 mois","1 mois","3 mois","6 mois"]},
+ {t:"Quel indice sert à réviser le loyer d'un logement ?",o:["L'IRL","L'ICC","L'ILC","L'ILAT"]},
+ {t:"Quel texte fixe la liste des charges récupérables ?",o:["Le décret du 26 août 1987","La loi Hoguet de 1970","Le règlement de copropriété","La loi du 10 juillet 1965"]},
+ {t:"Préavis du locataire d'un logement vide en zone tendue :",o:["1 mois","3 mois","2 mois","15 jours"]},
+ {t:"Préavis du locataire d'un logement vide hors zone tendue (cas général) :",o:["3 mois","1 mois","6 mois","2 mois"]},
+ {t:"Préavis du locataire d'un logement meublé :",o:["1 mois","3 mois","2 mois","6 mois"]},
+ {t:"Le bailleur d'un logement vide donne congé au moins…",o:["6 mois avant l'échéance","3 mois avant l'échéance","1 mois avant l'échéance","1 an avant l'échéance"]},
+ {t:"Le bailleur d'un meublé donne congé au moins…",o:["3 mois avant l'échéance","6 mois avant l'échéance","1 mois avant l'échéance","15 jours avant l'échéance"]},
+ {t:"Les motifs de congé du bailleur sont :",o:["vente, reprise, motif légitime et sérieux","vente, travaux, simple changement d'avis","reprise, hausse de loyer, vente du bien","tout motif écrit et daté"]},
+ {t:"Quel est le garant public et gratuit proposé par Action Logement ?",o:["Visale","La GLI","Le FSL","Le PTZ"]},
+ {t:"Quelle pièce est interdite dans un dossier de candidature locative ?",o:["Un relevé de compte bancaire","Le dernier avis d'imposition","Les bulletins de salaire","Une pièce d'identité"]},
+ {t:"Plafond des honoraires d'état des lieux à la charge du locataire :",o:["3 € par m²","5 € par m²","8 € par m²","12 € par m²"]},
+ {t:"Plafond des honoraires de visite, dossier et bail en zone très tendue :",o:["12 € par m²","8 € par m²","10 € par m²","15 € par m²"]},
+ {t:"Surface minimale d'un logement décent (avec 2,20 m sous plafond) :",o:["9 m²","12 m²","7 m²","14 m²"]},
+ {t:"Depuis le 1er janvier 2025, un logement ne peut plus être loué s'il est classé…",o:["G","F","E","D"]},
+ {t:"Le loyer d'un logement classé F ou G…",o:["ne peut plus être augmenté","peut augmenter de 10 %","est fixé par le préfet","est libre à la relocation"]},
+ {t:"En cas de retard de restitution du dépôt, la pénalité est de…",o:["10 % du loyer par mois de retard","5 % du dépôt par semaine de retard","1 % du loyer par jour de retard","50 € par mois de retard"]},
+ {t:"La part récupérable du salaire d'un gardien qui assure entretien et ordures est de…",o:["75 %","40 %","100 %","50 %"]},
+ {t:"Délai laissé au locataire par un commandement de payer visant la clause résolutoire :",o:["6 semaines","2 mois","1 mois","15 jours"]},
+ {t:"Durée de la trêve hivernale :",o:["Du 1er novembre au 31 mars","Du 15 octobre au 15 mars","Du 1er décembre au 31 mars","Du 1er novembre au 30 avril"]},
+ // Copropriété
+ {t:"Quelle loi organise le statut de la copropriété ?",o:["La loi du 10 juillet 1965","La loi du 6 juillet 1989","La loi du 2 janvier 1970","La loi du 24 mars 2014"]},
+ {t:"Un lot de copropriété comprend…",o:["une partie privative et une quote-part de parties communes","seulement une partie privative avec son terrain","seulement des parties communes indivises","un logement et un emplacement de parking obligatoire"]},
+ {t:"Quel document identifie et numérote les lots ?",o:["L'état descriptif de division","Le règlement intérieur de l'immeuble","Le carnet d'entretien","Le procès-verbal d'assemblée"]},
+ {t:"Quel document fixe la destination de l'immeuble et la répartition des charges ?",o:["Le règlement de copropriété","L'état daté du syndic","La fiche synthétique de l'immeuble","Le contrat de syndic professionnel"]},
+ {t:"Le syndicat des copropriétaires est…",o:["une personne morale","une association loi 1901","une société civile","un service municipal"]},
+ {t:"Les charges générales sont réparties selon…",o:["les tantièmes généraux","l'utilité pour chaque lot","le nombre d'occupants","la surface Carrez"]},
+ {t:"Les charges d'ascenseur sont réparties selon…",o:["l'utilité pour chaque lot","les tantièmes généraux","la surface Carrez","le nombre de pièces"]},
+ {t:"Délai minimal de convocation à l'assemblée générale (hors urgence) :",o:["21 jours","15 jours","30 jours","8 jours"]},
+ {t:"Qui convoque l'assemblée générale ?",o:["Le syndic","Le président du conseil syndical","Le maire","Le plus ancien copropriétaire"]},
+ {t:"L'approbation des comptes se vote à la majorité de l'article…",o:["24","25","26","22"]},
+ {t:"La désignation du syndic se vote à la majorité de l'article…",o:["25","24","26","L'unanimité"]},
+ {t:"La majorité de l'article 26 exige…",o:["la majorité des membres et 2/3 des voix","la majorité des voix exprimées en séance","la majorité absolue des voix de tous","l'unanimité des copropriétaires"]},
+ {t:"La « passerelle » de l'article 25-1 permet…",o:["un second vote immédiat à l'article 24","de convoquer une AG sous 8 jours","de voter sans quorum","de supprimer le vote par correspondance"]},
+ {t:"Un mandataire peut recevoir au plus, en principe…",o:["3 délégations de vote","1 délégation de vote","5 délégations de vote","un nombre illimité de délégations"]},
+ {t:"Le procès-verbal d'AG est notifié aux opposants et défaillants dans le délai d'…",o:["1 mois","15 jours","2 mois","3 mois"]},
+ {t:"Délai pour contester une décision d'AG (opposant ou défaillant) :",o:["2 mois","1 mois","6 mois","15 jours"]},
+ {t:"Durée maximale du mandat du syndic :",o:["3 ans","1 an","5 ans","6 ans"]},
+ {t:"Durée maximale du mandat d'un membre du conseil syndical :",o:["3 ans","1 an","6 ans","Illimitée"]},
+ {t:"Quel organe assiste le syndic et contrôle sa gestion ?",o:["Le conseil syndical","Le syndicat des copropriétaires","Le commissaire aux comptes","La commission de conciliation"]},
+ {t:"Les provisions du budget prévisionnel sont exigibles…",o:["le 1er jour de chaque trimestre","le 1er janvier pour toute l'année","à la clôture de l'exercice comptable","chaque fin de mois"]},
+ {t:"Cotisation annuelle minimale au fonds de travaux (cas général) :",o:["5 % du budget prévisionnel","2 % du budget prévisionnel","10 % du budget prévisionnel","1 % du budget prévisionnel"]},
+ {t:"Plafond des honoraires du syndic pour l'état daté :",o:["380 € TTC","150 € TTC","500 € TTC","800 € TTC"]},
+ {t:"Le plan pluriannuel de travaux (PPPT) concerne les copropriétés de plus de…",o:["15 ans","5 ans","50 ans","100 ans"]},
+ {t:"Tout syndicat de copropriétaires doit être inscrit au…",o:["registre national des copropriétés","registre du commerce et des sociétés","fichier national des propriétaires","cadastre municipal"]},
+ {t:"Pour lancer la procédure accélérée de recouvrement, la mise en demeure doit rester sans effet…",o:["30 jours","8 jours","6 mois","1 an"]}
 ],
+/* ---------------------------------------------------------------- VRAI / FAUX */
 vf:[
  {t:"L'agent immobilier peut être rémunéré avant la signature de l'acte authentique de vente.",a:false},
  {t:"Un mandat de vente conclu sans limitation de durée est valable.",a:false},
+ {t:"Le mandat doit être écrit et signé avant toute négociation.",a:true},
+ {t:"La carte professionnelle est délivrée par la préfecture.",a:false},
+ {t:"Un agent qui ne reçoit aucun fonds n'a pas à justifier d'une garantie financière.",a:true},
+ {t:"Un agent commercial immobilier peut rédiger seul les actes sans habilitation.",a:false},
+ {t:"La formation continue de l'agent comprend des heures de déontologie.",a:true},
+ {t:"Le démarchage téléphonique d'une personne inscrite sur Bloctel est autorisé si l'agent est poli.",a:false},
+ {t:"Un fichier de prospects doit respecter le RGPD.",a:true},
+ {t:"Un avis de valeur a la même force juridique qu'une expertise judiciaire.",a:false},
+ {t:"La méthode par comparaison s'appuie sur des ventes de biens similaires.",a:true},
+ {t:"Le mandat exclusif doit faire apparaître la clause d'exclusivité de façon très apparente.",a:true},
+ {t:"Les honoraires d'une agence doivent être affichés toutes taxes comprises.",a:true},
+ {t:"L'agent peut annoncer un bien sans indiquer sa classe énergie.",a:false},
+ {t:"Le bon de visite permet de prouver que l'agent a présenté le bien.",a:true},
+ {t:"L'offre de prêt peut être acceptée dès le lendemain de sa réception.",a:false},
  {t:"La surface Carrez exclut les parties d'une hauteur inférieure à 1,80 m.",a:true},
- {t:"Une erreur de surface Carrez de plus de 5 % au détriment de l'acquéreur permet une baisse du prix.",a:true},
- {t:"Les classes énergie et climat du DPE doivent figurer dans l'annonce immobilière.",a:true},
+ {t:"Une erreur Carrez de plus de 5 % au détriment de l'acquéreur permet une baisse du prix.",a:true},
+ {t:"La loi Carrez s'applique aussi aux maisons individuelles hors copropriété.",a:false},
+ {t:"Le délai de rétractation de l'acquéreur court à partir du lendemain de la notification de l'acte.",a:true},
+ {t:"Dans un compromis, seul le vendeur s'engage.",a:false},
+ {t:"Le diagnostic termites est valable 3 ans.",a:false},
+ {t:"Le DPE n'a qu'une valeur informative et n'est plus opposable.",a:false},
+ {t:"L'acte authentique de vente est signé chez le notaire.",a:true},
+ {t:"La plus-value sur la vente de la résidence principale est imposable.",a:false},
  {t:"Le bailleur qui a une GLI peut demander une caution si le locataire est apprenti.",a:true},
  {t:"Le bailleur peut refuser un candidat locataire parce qu'il a des enfants.",a:false},
+ {t:"Le bailleur peut demander une photo d'identité au candidat locataire.",a:false},
  {t:"Le bailleur peut réclamer une révision de loyer oubliée sur les 3 dernières années.",a:false},
- {t:"Des frais de relance peuvent être facturés au locataire en retard de paiement.",a:false},
+ {t:"Des frais de relance peuvent être facturés au locataire en retard.",a:false},
  {t:"Un bail meublé de résidence principale dure au minimum un an (hors étudiant).",a:true},
+ {t:"Le bail étudiant meublé dure obligatoirement 12 mois.",a:false},
  {t:"Le dépôt de garantie rapporte des intérêts au locataire pendant le bail.",a:false},
  {t:"L'état des lieux peut être établi par un commissaire de justice en cas de désaccord.",a:true},
  {t:"Le locataire peut sous-louer son logement sans l'accord écrit du bailleur.",a:false},
  {t:"La taxe d'enlèvement des ordures ménagères est récupérable sur le locataire.",a:true},
- {t:"Le salaire du gardien est toujours récupérable à 100 % sur le locataire.",a:false},
- {t:"Un agent qui ne reçoit aucun fonds doit quand même justifier d'une garantie financière.",a:false},
+ {t:"La taxe foncière est récupérable sur le locataire.",a:false},
+ {t:"Le salaire du gardien est toujours récupérable à 100 %.",a:false},
+ {t:"Le locataire doit justifier d'une assurance habitation à la demande du bailleur.",a:true},
+ {t:"Le bailleur doit remettre gratuitement une quittance au locataire qui la demande.",a:true},
+ {t:"Le bailleur peut couper l'électricité d'un locataire qui ne paie plus.",a:false},
+ {t:"L'usure normale due au temps peut être retenue sur le dépôt de garantie.",a:false},
+ {t:"Une perte d'emploi permet au locataire d'un logement vide de réduire son préavis à 1 mois.",a:true},
+ {t:"Le bailleur peut donner congé pour vendre le logement en fin de bail.",a:true},
+ {t:"Le locataire bénéficie d'un droit de préemption en cas de congé pour vente.",a:true},
+ {t:"La révision annuelle du loyer suppose une clause prévue au bail.",a:true},
+ {t:"Le loyer d'un logement classé G peut encore être augmenté à la révision.",a:false},
+ {t:"Pendant la trêve hivernale, aucune procédure d'expulsion ne peut être engagée devant le juge.",a:false},
+ {t:"Le syndicat des copropriétaires est composé de tous les copropriétaires.",a:true},
+ {t:"Le règlement de copropriété est facultatif dans un petit immeuble.",a:false},
+ {t:"Les parties communes peuvent être vendues séparément des lots par un copropriétaire.",a:false},
  {t:"Un copropriétaire peut voter par correspondance à l'assemblée générale.",a:true},
+ {t:"Une assemblée générale peut se tenir en partie par visioconférence.",a:true},
  {t:"Le syndic peut être un copropriétaire bénévole.",a:true},
  {t:"Le conseil syndical peut décider seul de gros travaux sans vote de l'AG.",a:false},
- {t:"Le procès-verbal d'AG est notifié aux copropriétaires opposants et défaillants.",a:true},
+ {t:"Le procès-verbal d'AG est notifié aux opposants et défaillants.",a:true},
  {t:"Les tantièmes de charges générales sont toujours égaux aux tantièmes d'ascenseur.",a:false},
  {t:"En cas de vente du lot, le fonds de travaux reste attaché au lot.",a:true},
  {t:"Le conseil syndical met en concurrence les contrats de syndic tous les 3 ans.",a:true},
- {t:"L'assemblée générale ordinaire doit se tenir au moins deux fois par an.",a:false}
+ {t:"L'assemblée générale ordinaire doit se tenir au moins deux fois par an.",a:false},
+ {t:"Le carnet d'entretien de l'immeuble est tenu par le syndic.",a:true},
+ {t:"Le budget prévisionnel est voté par le conseil syndical.",a:false},
+ {t:"Un copropriétaire peut demander l'inscription d'une question à l'ordre du jour.",a:true},
+ {t:"Le syndic peut engager des travaux urgents nécessaires à la sauvegarde de l'immeuble.",a:true},
+ {t:"Un copropriétaire peut refuser de payer ses charges s'il n'utilise pas l'ascenseur, même s'il en a l'utilité.",a:false},
+ {t:"Le syndic représente le syndicat en justice.",a:true},
+ {t:"La fiche synthétique de la copropriété est établie par le notaire.",a:false},
+ {t:"Le président du conseil syndical est élu par l'assemblée générale.",a:false},
+ {t:"Les charges impayées d'un copropriétaire sont garanties par un privilège immobilier spécial.",a:true},
+ {t:"L'état daté est remis par le syndic lors de la vente d'un lot.",a:true}
 ],
+/* ---------------------------------------------------------------- JUSTE CHIFFRE */
 num:[
- {t:"Délai de rétractation de l'acquéreur après la signature du compromis",a:10,u:"jours"},
+ {t:"Délai de rétractation de l'acquéreur après le compromis",a:10,u:"jours"},
  {t:"Durée de validité de la carte professionnelle",a:3,u:"ans"},
+ {t:"Garantie financière minimale d'un agent (hors débuts d'activité)",a:110000,u:"€"},
+ {t:"Formation continue obligatoire sur 3 ans",a:42,u:"heures"},
+ {t:"Délai de rétractation d'un mandat signé hors établissement",a:14,u:"jours"},
+ {t:"Préavis pour dénoncer un mandat exclusif après 3 mois",a:15,u:"jours"},
+ {t:"Taux d'endettement maximal recommandé par le HCSF",a:35,u:"%"},
+ {t:"Durée maximale d'un crédit immobilier (cas général HCSF)",a:25,u:"ans"},
+ {t:"Délai de réflexion avant d'accepter une offre de prêt",a:10,u:"jours"},
+ {t:"Surface minimale d'un lot soumis à la loi Carrez",a:8,u:"m²"},
+ {t:"Hauteur sous plafond minimale prise en compte dans la surface Carrez",a:180,u:"cm"},
+ {t:"Erreur de surface Carrez au-delà de laquelle l'acquéreur peut agir",a:5,u:"%"},
+ {t:"Durée de validité d'un DPE",a:10,u:"ans"},
+ {t:"Durée de validité de l'état relatif aux termites",a:6,u:"mois"},
+ {t:"Âge minimal d'une installation électrique pour exiger le diagnostic",a:15,u:"ans"},
+ {t:"Année avant laquelle le constat plomb est exigé",a:1949,u:""},
+ {t:"Durée de détention pour l'exonération d'impôt sur le revenu d'une plus-value",a:22,u:"ans"},
+ {t:"Durée minimale d'un bail vide, bailleur personne physique",a:3,u:"ans"},
+ {t:"Durée minimale d'un bail vide, bailleur société",a:6,u:"ans"},
  {t:"Durée maximale d'un bail mobilité",a:10,u:"mois"},
- {t:"Délai minimal de convocation à l'assemblée générale",a:21,u:"jours"},
+ {t:"Durée d'un bail étudiant meublé",a:9,u:"mois"},
+ {t:"Dépôt de garantie maximal en meublé",a:2,u:"mois de loyer"},
  {t:"Plafond des honoraires d'état des lieux payés par le locataire",a:3,u:"€ / m²"},
+ {t:"Plafond des honoraires de location en zone très tendue",a:12,u:"€ / m²"},
+ {t:"Surface minimale d'un logement décent",a:9,u:"m²"},
+ {t:"Pénalité mensuelle de retard de restitution du dépôt",a:10,u:"% du loyer"},
+ {t:"Part récupérable du salaire d'un gardien qui fait entretien et ordures",a:75,u:"%"},
  {t:"Délai pour payer après un commandement de payer",a:6,u:"semaines"},
  {t:"Durée de la trêve hivernale",a:5,u:"mois"},
- {t:"Délai pour contester une décision d'assemblée générale",a:2,u:"mois"},
- {t:"Hauteur sous plafond minimale prise en compte dans la surface Carrez",a:180,u:"cm"},
- {t:"Durée de validité d'un DPE",a:10,u:"ans"},
- {t:"Durée maximale du mandat de syndic",a:3,u:"ans"},
  {t:"Délai de prescription des loyers impayés",a:3,u:"ans"},
+ {t:"Délai minimal de convocation à l'assemblée générale",a:21,u:"jours"},
+ {t:"Délai pour contester une décision d'assemblée générale",a:2,u:"mois"},
+ {t:"Durée maximale du mandat de syndic",a:3,u:"ans"},
  {t:"Cotisation minimale au fonds de travaux",a:5,u:"% du budget"},
- {t:"Taux d'endettement maximal recommandé par le HCSF",a:35,u:"%"},
- {t:"Erreur de surface Carrez au-delà de laquelle l'acquéreur peut agir",a:5,u:"%"}
+ {t:"Plafond des honoraires d'état daté",a:380,u:"€ TTC"},
+ {t:"Âge d'une copropriété à partir duquel le PPPT est obligatoire",a:15,u:"ans"},
+ {t:"Délai de notification du procès-verbal d'AG",a:1,u:"mois"},
+ {t:"Nombre maximal de délégations de vote par mandataire (cas général)",a:3,u:"délégations"}
 ],
+/* ---------------------------------------------------------------- MOT MYSTÈRE */
 mot:[
  {d:"Document par lequel le propriétaire confie à l'agent la mission de vendre",w:"MANDAT"},
  {d:"Personne qui s'engage à payer si le locataire ne paie pas",w:"CAUTION"},
@@ -217,64 +367,214 @@ mot:[
  {d:"Document comparé à l'entrée et à la sortie du locataire",w:"ETAT DES LIEUX"},
  {d:"Organe composé de copropriétaires qui contrôle le syndic",w:"CONSEIL SYNDICAL"},
  {d:"Acte signé chez le notaire qui transfère la propriété",w:"ACTE AUTHENTIQUE",alt:["AUTHENTIQUE"]},
- {d:"Document qui reprend les décisions votées en assemblée",w:"PROCES VERBAL",alt:["PROCES-VERBAL","PV"]}
+ {d:"Document qui reprend les décisions votées en assemblée",w:"PROCES VERBAL",alt:["PROCES-VERBAL","PV"]},
+ {d:"Engagement d'un organisme qui protège les fonds confiés à l'agent",w:"GARANTIE FINANCIERE"},
+ {d:"Registre où sont numérotés tous les mandats de l'agence",w:"REGISTRE DES MANDATS"},
+ {d:"Document remis au négociateur salarié pour prouver ses pouvoirs",w:"ATTESTATION D'HABILITATION",alt:["HABILITATION"]},
+ {d:"Méthode d'estimation fondée sur les ventes de biens similaires",w:"COMPARAISON"},
+ {d:"Somme qui rémunère l'agent immobilier",w:"HONORAIRES"},
+ {d:"Diagnostic qui classe le logement de A à G",w:"DPE",alt:["DIAGNOSTIC DE PERFORMANCE ENERGETIQUE"]},
+ {d:"Document signé par le visiteur lors d'une visite",w:"BON DE VISITE"},
+ {d:"Somme personnelle que l'acquéreur investit sans emprunter",w:"APPORT"},
+ {d:"Condition qui suspend la vente à l'obtention du prêt",w:"CONDITION SUSPENSIVE"},
+ {d:"Gain réalisé lors de la revente d'un bien plus cher qu'à l'achat",w:"PLUS VALUE",alt:["PLUS-VALUE","PLUSVALUE"]},
+ {d:"Officier public qui rédige l'acte de vente",w:"NOTAIRE"},
+ {d:"Indice de référence des loyers",w:"IRL"},
+ {d:"Document qui prouve le paiement du loyer",w:"QUITTANCE"},
+ {d:"Somme versée à l'entrée pour garantir les obligations du locataire",w:"DEPOT DE GARANTIE"},
+ {d:"Contrat de location d'un logement",w:"BAIL"},
+ {d:"Charges que le bailleur peut refacturer au locataire",w:"RECUPERABLES",alt:["CHARGES RECUPERABLES"]},
+ {d:"Opération annuelle qui ajuste les provisions aux charges réelles",w:"REGULARISATION"},
+ {d:"Garant gratuit proposé par Action Logement",w:"VISALE"},
+ {d:"Délai à respecter avant de quitter le logement",w:"PREAVIS"},
+ {d:"Période sans expulsion du 1er novembre au 31 mars",w:"TREVE HIVERNALE"},
+ {d:"Réunion annuelle des copropriétaires",w:"ASSEMBLEE GENERALE"},
+ {d:"Document qui identifie et numérote les lots",w:"ETAT DESCRIPTIF DE DIVISION",alt:["EDD"]},
+ {d:"Parties de l'immeuble à l'usage de tous les copropriétaires",w:"PARTIES COMMUNES"},
+ {d:"Somme mise de côté chaque année pour financer les futurs travaux",w:"FONDS DE TRAVAUX"},
+ {d:"Document remis par le syndic lors de la vente d'un lot",w:"ETAT DATE"},
+ {d:"Prévision des dépenses courantes de la copropriété pour l'année",w:"BUDGET PREVISIONNEL"},
+ {d:"Carnet qui retrace les travaux et contrats d'entretien",w:"CARNET D'ENTRETIEN"}
 ],
+/* ---------------------------------------------------------------- QUI SUIS-JE ? (indices progressifs) */
+qsj:[
+ {c:["Je suis délivrée par un établissement consulaire.","Je dois être renouvelée tous les 3 ans.","Je porte des mentions T, G ou S.","Sans moi, impossible d'exercer la transaction."],w:"CARTE PROFESSIONNELLE",alt:["CARTE PRO","CARTE"]},
+ {c:["Je suis tenu sans blanc ni rature.","Mes numéros se suivent dans l'ordre chronologique.","On reporte mon numéro sur chaque mandat.","Je suis obligatoire dans toute agence."],w:"REGISTRE DES MANDATS",alt:["REGISTRE"]},
+ {c:["On me signe avant toute négociation.","Je peux être simple ou exclusif.","Je dois avoir une durée limitée.","Je donne à l'agent le pouvoir de chercher un acquéreur."],w:"MANDAT"},
+ {c:["Je suis une base de données publique.","Je suis alimentée par les services fiscaux.","Je donne les prix réels des ventes.","On m'utilise pour estimer un bien."],w:"DVF"},
+ {c:["Je suis un avant-contrat.","Je fais courir un délai de 10 jours.","J'engage les deux parties.","Je précède l'acte authentique."],w:"COMPROMIS",alt:["COMPROMIS DE VENTE"]},
+ {c:["Je protège l'acquéreur d'un lot.","Je ne compte pas ce qui fait moins de 1,80 m.","Une erreur de plus de 5 % sur moi fait baisser le prix.","Je porte le nom d'un député."],w:"SURFACE CARREZ",alt:["CARREZ","LOI CARREZ"]},
+ {c:["Je dure 10 ans.","Je dois figurer dans les annonces.","Je classe les logements de A à G.","Je mesure la consommation d'énergie."],w:"DPE"},
+ {c:["Je suis un officier public.","Je collecte des taxes pour l'État.","Je rédige l'acte authentique.","Mes « frais » font peur aux acquéreurs."],w:"NOTAIRE"},
+ {c:["Je suis publié chaque trimestre par l'INSEE.","Je ne m'applique que si le bail le prévoit.","Je sers à réviser une somme chaque année.","Mon sigle compte trois lettres."],w:"IRL"},
+ {c:["Je suis versé à l'entrée dans les lieux.","Je ne produis pas d'intérêts.","Je suis plafonné à un mois en location vide.","On me restitue dans un ou deux mois."],w:"DEPOT DE GARANTIE"},
+ {c:["Je suis un garant public.","Je suis gratuit.","Je suis proposé par Action Logement.","Mon nom commence par un V."],w:"VISALE"},
+ {c:["Je compare deux moments de la vie du logement.","Je suis établi de façon contradictoire.","Mes honoraires sont plafonnés à 3 € par m² pour le locataire.","Je permets de chiffrer les dégradations."],w:"ETAT DES LIEUX"},
+ {c:["Je commence le 1er novembre.","Je finis le 31 mars.","Pendant moi, pas d'expulsion forcée.","Je protège les locataires en hiver."],w:"TREVE HIVERNALE"},
+ {c:["Je suis un acte de commissaire de justice.","Je laisse 6 semaines au locataire.","Je vise la clause résolutoire.","Je réclame la dette locative."],w:"COMMANDEMENT DE PAYER",alt:["COMMANDEMENT"]},
+ {c:["Je liste des dépenses.","Je date de 1987.","Je dis ce que le bailleur peut refacturer.","Je suis un décret sur les charges."],w:"CHARGES RECUPERABLES",alt:["DECRET DE 1987","DECRET DU 26 AOUT 1987"]},
+ {c:["Je suis une personne morale.","Je réunis tous les copropriétaires.","Je suis représenté par le syndic.","Je conserve l'immeuble et administre les parties communes."],w:"SYNDICAT DES COPROPRIETAIRES",alt:["SYNDICAT"]},
+ {c:["Je suis élu par l'assemblée générale.","Mon mandat dure 3 ans au plus.","Je mets en concurrence les contrats.","J'assiste et contrôle le syndic."],w:"CONSEIL SYNDICAL"},
+ {c:["Je me réunis au moins une fois par an.","On me convoque 21 jours à l'avance.","Je vote les comptes et le budget.","Je réunis tous les copropriétaires."],w:"ASSEMBLEE GENERALE",alt:["AG"]},
+ {c:["Je suis une unité de mesure.","On m'exprime souvent en millièmes.","Je sers à répartir les charges générales.","Je fixe aussi le poids des votes."],w:"TANTIEMES",alt:["TANTIEME","MILLIEMES"]},
+ {c:["Je suis alimenté chaque année.","Je représente au moins 5 % du budget.","Je reste attaché au lot vendu.","Je finance les travaux futurs."],w:"FONDS DE TRAVAUX"},
+ {c:["Je suis délivré lors d'une vente.","Mon prix est plafonné à 380 €.","Je suis établi par le syndic.","Je fais le point sur les sommes dues par le vendeur."],w:"ETAT DATE"},
+ {c:["Je porte la lettre S sur la carte.","Je suis désigné à la majorité de l'article 25.","Mon mandat dure 3 ans au plus.","J'exécute les décisions de l'AG."],w:"SYNDIC"},
+ {c:["Je suis un service de l'État.","Je reçois des déclarations de soupçon.","Je lutte contre les circuits financiers clandestins.","Mon nom commence par TRAC."],w:"TRACFIN"},
+ {c:["Je suis un délai.","Je dure 10 jours.","Je commence le lendemain de la remise de l'offre.","Après moi seulement, on peut accepter le prêt."],w:"DELAI DE REFLEXION",alt:["REFLEXION"]},
+ {c:["Je suis un document de la visite.","Je suis signé par le visiteur.","Je protège la commission de l'agent.","J'indique l'adresse du bien vu."],w:"BON DE VISITE"}
+],
+/* ---------------------------------------------------------------- GRAND TRI */
 tri:[
- {t:"Charge récupérable sur le locataire ?",c:["Récupérable","Non récupérable"],items:[
-   ["Taxe d'enlèvement des ordures ménagères",0],["Entretien des parties communes",0],["Électricité de l'ascenseur",0],["Eau froide des parties communes",0],
-   ["Honoraires du syndic",1],["Ravalement de façade",1],["Taxe foncière",1],["Remplacement de la chaudière collective",1]]},
- {t:"Partie commune ou partie privative ? (présomptions de la loi de 1965)",c:["Commune","Privative"],items:[
-   ["Gros œuvre du bâtiment",0],["Cage d'escalier",0],["Toiture",0],["Sol de la parcelle",0],
-   ["Revêtement de sol d'un appartement",1],["Cloisons intérieures d'un lot",1],["Sanitaires d'un appartement",1],["Volets intérieurs d'un lot",1]]},
- {t:"Pièce que le bailleur peut demander au candidat ?",c:["Autorisée","Interdite"],items:[
-   ["Dernier avis d'imposition",0],["Trois derniers bulletins de salaire",0],["Contrat de travail",0],["Justificatif de domicile actuel",0],
-   ["Relevé de compte bancaire",1],["Photo d'identité",1],["Carte Vitale",1],["Attestation de bonne tenue de compte",1]]},
- {t:"Usure normale ou dégradation locative ?",c:["Usure normale","Dégradation"],items:[
-   ["Peinture jaunie après 9 ans",0],["Parquet patiné dans le couloir",0],["Moquette décolorée par le soleil",0],["Joints légèrement ternis après 7 ans",0],
-   ["Brûlure de cigarette sur la moquette",1],["Vitre cassée",1],["Porte enfoncée",1],["Évier fissuré par un choc",1]]},
- {t:"Plutôt vente ou location ?",c:["Vente","Location"],items:[
-   ["Délai de rétractation de 10 jours",0],["Acte authentique",0],["Condition suspensive de prêt",0],["Diagnostic termites joint au compromis",0],
-   ["Dépôt de garantie",1],["Révision selon l'IRL",1],["Quittance mensuelle",1],["Préavis d'un mois en zone tendue",1]]}
+ {t:"Charge récupérable sur le locataire ?",c:["Récupérable","Non récupérable"],items:[["Taxe d'enlèvement des ordures ménagères",0],["Entretien des parties communes",0],["Électricité de l'ascenseur",0],["Eau froide des parties communes",0],["Honoraires du syndic",1],["Ravalement de façade",1],["Taxe foncière",1],["Remplacement de la chaudière collective",1]]},
+ {t:"Partie commune ou partie privative ? (présomptions de la loi de 1965)",c:["Commune","Privative"],items:[["Gros œuvre du bâtiment",0],["Cage d'escalier",0],["Toiture",0],["Sol de la parcelle",0],["Revêtement de sol d'un appartement",1],["Cloisons intérieures d'un lot",1],["Sanitaires d'un appartement",1],["Volets intérieurs d'un lot",1]]},
+ {t:"Pièce que le bailleur peut demander au candidat ?",c:["Autorisée","Interdite"],items:[["Dernier avis d'imposition",0],["Trois derniers bulletins de salaire",0],["Contrat de travail",0],["Justificatif de domicile actuel",0],["Relevé de compte bancaire",1],["Photo d'identité",1],["Carte Vitale",1],["Attestation de bonne tenue de compte",1]]},
+ {t:"Usure normale ou dégradation locative ?",c:["Usure normale","Dégradation"],items:[["Peinture jaunie après 9 ans",0],["Parquet patiné dans le couloir",0],["Moquette décolorée par le soleil",0],["Joints légèrement ternis après 7 ans",0],["Brûlure de cigarette sur la moquette",1],["Vitre cassée",1],["Porte enfoncée",1],["Évier fissuré par un choc",1]]},
+ {t:"Plutôt vente ou location ?",c:["Vente","Location"],items:[["Délai de rétractation de 10 jours",0],["Acte authentique",0],["Condition suspensive de prêt",0],["Diagnostic termites joint au compromis",0],["Dépôt de garantie",1],["Révision selon l'IRL",1],["Quittance mensuelle",1],["Préavis d'un mois en zone tendue",1]]},
+ {t:"Majorité de l'article 24 ou de l'article 25 ?",c:["Article 24","Article 25"],items:[["Approbation des comptes",0],["Vote du budget prévisionnel",0],["Travaux d'entretien courant",0],["Travaux rendus obligatoires par la loi",0],["Désignation du syndic",1],["Élection du conseil syndical",1],["Révocation du syndic",1],["Délégation de pouvoir au conseil syndical",1]]},
+ {t:"Obligation de l'agent immobilier ou pratique interdite ?",c:["Obligation","Interdit"],items:[["Tenir un registre des mandats",0],["Afficher ses honoraires TTC",0],["Justifier d'une assurance RCP",0],["Se former 42 heures sur 3 ans",0],["Encaisser une commission avant l'acte",1],["Signer un mandat sans durée",1],["Démarcher un inscrit Bloctel",1],["Refuser un client pour son origine",1]]},
+ {t:"Diagnostic obligatoire à la vente : valable 6 mois ou plus longtemps ?",c:["6 mois","Plus de 6 mois"],items:[["État relatif aux termites",0],["État des risques (ERP)",0],["DPE",1],["Diagnostic électricité",1],["Diagnostic gaz",1],["Amiante sans présence détectée",1],["Assainissement non collectif",1],["Mesurage Carrez sans travaux",1]]},
+ {t:"Rôle du syndic ou de l'assemblée générale ?",c:["Syndic","Assemblée générale"],items:[["Exécuter les décisions votées",0],["Tenir la comptabilité",0],["Convoquer les copropriétaires",0],["Engager des travaux urgents",0],["Voter le budget prévisionnel",1],["Désigner le syndic",1],["Approuver les comptes",1],["Décider de gros travaux",1]]},
+ {t:"Motif de préavis réduit à 1 mois (location vide) ou non ?",c:["Préavis 1 mois","Préavis 3 mois"],items:[["Logement en zone tendue",0],["Perte d'emploi",0],["Mutation professionnelle",0],["Bénéficiaire du RSA",0],["Achat d'une résidence principale",1],["Envie de déménager",1],["Mariage du locataire",1],["Désaccord avec les voisins",1]]},
+ {t:"Élément du dossier de financement ou de l'avant-contrat ?",c:["Financement","Avant-contrat"],items:[["Taux d'endettement",0],["Offre de prêt",0],["Assurance emprunteur",0],["Apport personnel",0],["Délai de rétractation",1],["Condition suspensive",1],["Dépôt de garantie séquestré",1],["Désignation du bien",1]]},
+ {t:"Vrai délit ou simple faute contractuelle ?",c:["Délit pénal","Litige civil"],items:[["Changer la serrure d'un locataire en place",0],["Exercer sans carte professionnelle",0],["Refuser un locataire pour sa religion",0],["Expulser un occupant sans jugement",0],["Restituer le dépôt en retard",1],["Oublier de réviser le loyer",1],["Erreur de surface Carrez",1],["Charges mal régularisées",1]]}
 ],
+/* ---------------------------------------------------------------- L'INTRUS (la PREMIÈRE proposition est l'intrus) */
+intrus:[
+ {t:"Trouvez l'intrus : charges récupérables",o:["Taxe foncière","Entretien des espaces verts","Électricité des parties communes","Taxe d'ordures ménagères"]},
+ {t:"Trouvez l'intrus : pièces autorisées du candidat locataire",o:["Relevé bancaire","Avis d'imposition","Bulletin de salaire","Contrat de travail"]},
+ {t:"Trouvez l'intrus : mentions possibles de la carte professionnelle",o:["Mention N","Mention T","Mention G","Mention S"]},
+ {t:"Trouvez l'intrus : méthodes d'estimation",o:["Méthode du coup de cœur","Comparaison","Capitalisation","Sol + construction"]},
+ {t:"Trouvez l'intrus : diagnostics de vente",o:["Diagnostic bruit des voisins","DPE","État des risques","Diagnostic termites"]},
+ {t:"Trouvez l'intrus : motifs de congé du bailleur",o:["Hausse du loyer","Vente du logement","Reprise pour habiter","Motif légitime et sérieux"]},
+ {t:"Trouvez l'intrus : organes de la copropriété",o:["Le comité d'entreprise","Le syndicat","Le syndic","Le conseil syndical"]},
+ {t:"Trouvez l'intrus : majorités de la loi de 1965",o:["Article 32","Article 24","Article 25","Article 26"]},
+ {t:"Trouvez l'intrus : éléments d'un lot de copropriété",o:["Un permis de construire","Une partie privative","Une quote-part de parties communes","Des tantièmes"]},
+ {t:"Trouvez l'intrus : obligations du locataire",o:["Payer la taxe foncière","Payer le loyer","S'assurer","Entretenir le logement"]},
+ {t:"Trouvez l'intrus : obligations du bailleur",o:["Payer l'assurance du locataire","Délivrer un logement décent","Remettre les quittances","Assurer la jouissance paisible"]},
+ {t:"Trouvez l'intrus : délais de 10 jours",o:["Préavis en zone tendue","Rétractation de l'acquéreur","Réflexion sur l'offre de prêt","Enregistrement d'une promesse unilatérale"]},
+ {t:"Trouvez l'intrus : durées de 3 ans",o:["Validité d'un DPE","Validité de la carte professionnelle","Durée maximale du mandat de syndic","Bail vide avec bailleur personne physique"]},
+ {t:"Trouvez l'intrus : documents établis par le syndic",o:["Le compromis de vente","L'état daté","La fiche synthétique","Le carnet d'entretien"]},
+ {t:"Trouvez l'intrus : décisions votées en AG",o:["Le choix du notaire du vendeur","Le budget prévisionnel","La désignation du syndic","Les gros travaux"]},
+ {t:"Trouvez l'intrus : garanties contre les impayés",o:["Le PTZ","La caution","Visale","La GLI"]},
+ {t:"Trouvez l'intrus : avant-contrats",o:["L'état des lieux","La promesse unilatérale","Le compromis","La promesse synallagmatique"]},
+ {t:"Trouvez l'intrus : acteurs de la vente",o:["Le syndic de copropriété","Le vendeur","L'acquéreur","Le notaire"]},
+ {t:"Trouvez l'intrus : mentions du bail d'habitation",o:["Le salaire du bailleur","Le montant du loyer","La durée du bail","La surface habitable"]},
+ {t:"Trouvez l'intrus : contenu d'une annonce de vente",o:["Le nom du vendeur","Le prix","Les honoraires","Les classes du DPE"]},
+ {t:"Trouvez l'intrus : documents de la location",o:["L'état daté","Le bail","L'état des lieux","La quittance"]},
+ {t:"Trouvez l'intrus : frais à la charge de l'acquéreur",o:["Le diagnostic termites","Les droits de mutation","Les émoluments du notaire","Les frais de garantie du prêt"]},
+ {t:"Trouvez l'intrus : contrôles et sanctions de l'agent",o:["La CNIL fixe ses honoraires","La DGCCRF contrôle ses pratiques","Le juge sanctionne l'exercice illégal","La CCI délivre la carte"]},
+ {t:"Trouvez l'intrus : éléments du budget de la copropriété",o:["Le loyer des locataires","L'entretien de l'ascenseur","Les honoraires du syndic","L'assurance de l'immeuble"]},
+ {t:"Trouvez l'intrus : informations de la découverte vendeur",o:["Le salaire de l'acquéreur","Le mobile de la vente","Le délai souhaité","La situation juridique du bien"]},
+ {t:"Trouvez l'intrus : situations de préavis d'un mois (vide)",o:["Départ à la retraite","Perte d'emploi","Premier emploi","Mutation"]},
+ {t:"Trouvez l'intrus : bail meublé",o:["Durée minimale de 3 ans","Liste de mobilier obligatoire","Préavis du locataire d'un mois","Dépôt de 2 mois maximum"]},
+ {t:"Trouvez l'intrus : obligations liées au RGPD",o:["Vendre le fichier sans accord","Informer la personne","Limiter la durée de conservation","Sécuriser les données"]},
+ {t:"Trouvez l'intrus : parties communes présumées",o:["La cuisine d'un lot","La toiture","Les canalisations communes","La cour"]},
+ {t:"Trouvez l'intrus : étapes du recouvrement locatif",o:["Changer la serrure","Relance amiable","Commandement de payer","Assignation"]}
+],
+/* ---------------------------------------------------------------- REMETS DANS L'ORDRE (items dans le bon ordre) */
+ordre:[
+ {t:"Remettez dans l'ordre les étapes d'une vente",items:["Mandat de vente","Visites et offre d'achat","Compromis de vente","Délai de rétractation","Acte authentique"]},
+ {t:"Remettez dans l'ordre le recouvrement d'un loyer impayé",items:["Relance amiable","Mise en demeure","Commandement de payer","Assignation","Jugement","Commandement de quitter les lieux"]},
+ {t:"Remettez dans l'ordre l'entrée d'un locataire",items:["Annonce de location","Visites","Étude des dossiers","Signature du bail","État des lieux d'entrée"]},
+ {t:"Remettez dans l'ordre la tenue d'une assemblée générale",items:["Préparation de l'ordre du jour","Convocation 21 jours avant","Feuille de présence","Votes des résolutions","Notification du procès-verbal"]},
+ {t:"Remettez dans l'ordre la sortie d'un locataire",items:["Lettre de congé","Préavis","État des lieux de sortie","Restitution des clés","Restitution du dépôt de garantie"]},
+ {t:"Remettez dans l'ordre le financement d'un achat",items:["Simulation de capacité d'emprunt","Signature du compromis","Demande de prêt","Offre de prêt","Acceptation après 10 jours","Déblocage des fonds"]},
+ {t:"Remettez dans l'ordre la prise de mandat",items:["Prospection","Découverte du vendeur","Visite du bien","Estimation","Signature du mandat"]},
+ {t:"Remettez dans l'ordre la révision du loyer",items:["Vérifier la clause du bail","Repérer la date de révision","Chercher le nouvel IRL","Calculer le nouveau loyer","Informer le locataire"]},
+ {t:"Classez du plus court au plus long",items:["Rétractation de l'acquéreur","Délai de convocation à l'AG","Délai pour contester une AG","Préavis du locataire hors zone tendue","Congé du bailleur (vide)"]},
+ {t:"Classez du plus court au plus long (durées de validité)",items:["Termites","Carte professionnelle","Diagnostic électricité en location","DPE"]},
+ {t:"Remettez dans l'ordre la régularisation annuelle des charges",items:["Encaisser les provisions","Clôturer les dépenses réelles","Établir le décompte","Envoyer le décompte au locataire","Régulariser le solde"]},
+ {t:"Remettez dans l'ordre la vente d'un lot de copropriété",items:["Pré-état daté remis à l'acquéreur","Signature du compromis","Demande d'état daté au syndic","Acte authentique","Notification de la mutation au syndic"]},
+ {t:"Classez du plus petit au plus grand (honoraires plafonnés au m²)",items:["État des lieux","Zone non tendue","Zone tendue","Zone très tendue"]},
+ {t:"Remettez dans l'ordre le traitement d'un sinistre dans l'immeuble",items:["Signalement par un copropriétaire","Mesures d'urgence du syndic","Déclaration à l'assureur","Expertise","Travaux de réparation"]}
+],
+/* ---------------------------------------------------------------- FACE À FACE (buzzer) */
 buzz:[
  {t:"Quelle loi encadre la profession d'agent immobilier ?",r:"La loi Hoguet du 2 janvier 1970"},
- {t:"Citez les trois méthodes d'estimation d'un bien.",r:"Comparaison, capitalisation (par le revenu), sol + construction"},
+ {t:"Citez les trois méthodes d'estimation d'un bien.",r:"Comparaison, capitalisation, sol + construction"},
  {t:"Que signifie le sigle DVF ?",r:"Demandes de valeurs foncières"},
  {t:"Avec quel préavis le bailleur donne-t-il congé d'un logement vide ?",r:"6 mois avant l'échéance du bail"},
  {t:"Que signifie le sigle EDD ?",r:"État descriptif de division"},
  {t:"Qui convoque l'assemblée générale des copropriétaires ?",r:"Le syndic"},
- {t:"Quel organe vote le budget prévisionnel de la copropriété ?",r:"L'assemblée générale"},
- {t:"Quelle est la durée minimale d'un bail meublé pour un étudiant ?",r:"9 mois"},
- {t:"Que doit prévoir un plan d'apurement en plus du remboursement de la dette ?",r:"Le paiement du loyer courant"},
- {t:"À quoi sert le registre des mandats ?",r:"Numéroter chronologiquement tous les mandats ; sa tenue est obligatoire"},
+ {t:"Quel organe vote le budget prévisionnel ?",r:"L'assemblée générale"},
+ {t:"Quelle est la durée d'un bail étudiant meublé ?",r:"9 mois"},
+ {t:"Que doit prévoir un plan d'apurement en plus du remboursement ?",r:"Le paiement du loyer courant"},
+ {t:"À quoi sert le registre des mandats ?",r:"Numéroter chronologiquement les mandats ; tenue obligatoire"},
  {t:"Qui représente le syndicat des copropriétaires en justice ?",r:"Le syndic"},
- {t:"Quelle différence entre promesse unilatérale et compromis ?",r:"Promesse : seul le vendeur s'engage. Compromis : engagement réciproque"},
- {t:"Quel document le bailleur doit-il remettre gratuitement au locataire qui en fait la demande ?",r:"La quittance de loyer"},
+ {t:"Différence entre promesse unilatérale et compromis ?",r:"Promesse : seul le vendeur s'engage. Compromis : engagement réciproque"},
+ {t:"Quel document le bailleur remet-il gratuitement au locataire qui le demande ?",r:"La quittance de loyer"},
  {t:"Quelle est la période de la trêve hivernale ?",r:"Du 1er novembre au 31 mars"},
- {t:"Quel juge est compétent pour les litiges liés au bail d'habitation ?",r:"Le juge des contentieux de la protection"},
- {t:"Quel document permet de suivre les travaux et les contrats d'entretien de l'immeuble ?",r:"Le carnet d'entretien"},
- {t:"Quelle majorité faut-il pour désigner le syndic ?",r:"La majorité de l'article 25 (majorité absolue des voix de tous les copropriétaires)"},
- {t:"Que signifie le sigle TRACFIN ?",r:"Traitement du renseignement et action contre les circuits financiers clandestins"}
+ {t:"Quel juge est compétent pour les litiges du bail d'habitation ?",r:"Le juge des contentieux de la protection"},
+ {t:"Quel document suit les travaux et contrats d'entretien de l'immeuble ?",r:"Le carnet d'entretien"},
+ {t:"Quelle majorité pour désigner le syndic ?",r:"Article 25 : majorité des voix de tous les copropriétaires"},
+ {t:"Que signifie TRACFIN ?",r:"Traitement du renseignement et action contre les circuits financiers clandestins"},
+ {t:"Que signifient les lettres T, G et S sur la carte professionnelle ?",r:"Transaction, Gestion, Syndic"},
+ {t:"Qui délivre la carte professionnelle ?",r:"La CCI territoriale ou départementale"},
+ {t:"Combien d'heures de formation continue sur 3 ans ?",r:"42 heures"},
+ {t:"Quel document le négociateur salarié doit-il détenir ?",r:"Une attestation d'habilitation"},
+ {t:"Citez deux mentions obligatoires d'une annonce de vente.",r:"Prix, honoraires (TTC et à la charge de qui), classes du DPE, en copropriété : charges, nombre de lots…"},
+ {t:"Quel est le délai de rétractation de l'acquéreur d'un logement ?",r:"10 jours"},
+ {t:"Quelle est la durée minimale de la condition suspensive de prêt ?",r:"1 mois"},
+ {t:"Quel est le taux d'endettement maximal recommandé ?",r:"35 % (assurance comprise)"},
+ {t:"Qu'apporte la loi Lemoine sur l'assurance emprunteur ?",r:"Résiliation à tout moment (et suppression du questionnaire de santé sous conditions)"},
+ {t:"Citez trois diagnostics obligatoires à la vente.",r:"DPE, ERP, termites, amiante, plomb, électricité, gaz, Carrez, assainissement…"},
+ {t:"Combien de temps l'acquéreur a-t-il pour agir après une erreur Carrez ?",r:"1 an après l'acte authentique"},
+ {t:"Après combien d'années une plus-value est-elle exonérée d'impôt sur le revenu ?",r:"22 ans de détention"},
+ {t:"Quels biens sont exonérés de plus-value à la revente ?",r:"La résidence principale"},
+ {t:"Quelle est la durée minimale d'un bail meublé (non étudiant) ?",r:"1 an"},
+ {t:"Quel est le dépôt de garantie maximal en meublé ?",r:"2 mois de loyer hors charges"},
+ {t:"Citez deux pièces interdites dans un dossier de location.",r:"Relevé bancaire, photo d'identité, carte Vitale, attestation de bonne tenue de compte…"},
+ {t:"Quelles sont les conditions de surface d'un logement décent ?",r:"9 m² et 2,20 m sous plafond, ou 20 m³"},
+ {t:"Quels logements ne peuvent plus être loués depuis 2025 ?",r:"Les logements classés G au DPE"},
+ {t:"Comment se calcule la révision annuelle du loyer ?",r:"Loyer × nouvel IRL / IRL de référence"},
+ {t:"Quel est le délai pour réclamer une révision de loyer oubliée ?",r:"1 an, sans effet rétroactif"},
+ {t:"Combien de temps les justificatifs de charges restent-ils à disposition du locataire ?",r:"6 mois après l'envoi du décompte"},
+ {t:"Citez deux motifs de préavis réduit à un mois.",r:"Zone tendue, perte d'emploi, mutation, premier emploi, RSA/AAH, raison de santé…"},
+ {t:"Que contient un lot de copropriété ?",r:"Une partie privative et une quote-part de parties communes"},
+ {t:"Quelle est la différence entre charges générales et charges spéciales ?",r:"Générales : tantièmes. Spéciales : selon l'utilité (ascenseur, chauffage…)"},
+ {t:"Quel est le délai de convocation à l'AG ?",r:"21 jours"},
+ {t:"Combien de délégations de vote un mandataire peut-il recevoir ?",r:"3 en principe (plus si le total ne dépasse pas 10 % des voix)"},
+ {t:"Qui élit le président du conseil syndical ?",r:"Les membres du conseil syndical"},
+ {t:"Quand les provisions du budget sont-elles exigibles ?",r:"Le 1er jour de chaque trimestre"},
+ {t:"Quel est le montant minimal du fonds de travaux ?",r:"5 % du budget prévisionnel"},
+ {t:"Quel est le plafond des honoraires d'état daté ?",r:"380 € TTC"},
+ {t:"Qu'est-ce que le PPPT ?",r:"Le projet de plan pluriannuel de travaux"},
+ {t:"Quelle garantie protège le syndicat contre les impayés de charges lors d'une vente ?",r:"Le privilège immobilier spécial (et l'opposition du syndic sur le prix)"}
 ]};
 
 /* ======================================================================
    3) DÉFINITION DES MINI-JEUX
    ====================================================================== */
 const GAMES = [
- {id:"qcm", title:"Le Quiz Éclair", insp:"Inspiré de Kahoot", ic:"⚡", dur:20, n:8,
+ {id:"qcm", title:"Le Quiz Éclair", insp:"Inspiré de Kahoot", ic:"⚡", dur:20, n:15,
   rules:"Une question, quatre réponses de couleur. Répondez sur votre PC avant la fin du chrono. Bonne réponse : 100 points + jusqu'à 50 points de rapidité. Une seule réponse, définitive."},
- {id:"vf", title:"Vrai ou Faux express", insp:"Inspiré des duels de Quizlet Live", ic:"⚖️", dur:10, n:10,
+ {id:"vf", title:"Vrai ou Faux express", insp:"Inspiré des duels de Quizlet Live", ic:"⚖️", dur:10, n:20,
   rules:"Une affirmation, 10 secondes. Vrai ou faux ? Bonne réponse : 60 points + jusqu'à 40 points de rapidité."},
- {id:"num", title:"Le Juste Chiffre", insp:"Inspiré du Juste Prix", ic:"🎯", dur:25, n:6,
-  rules:"Donnez le chiffre exact (délai, durée, taux…). L'équipe la plus proche gagne 150 points, la 2e 100, la 3e 50. Réponse exacte : bonus de 50 points."},
- {id:"mot", title:"Le Mot Mystère", insp:"Inspiré de Motus et Wordle", ic:"🔤", dur:45, n:6,
+ {id:"num", title:"Le Juste Chiffre", insp:"Inspiré du Juste Prix", ic:"🎯", dur:25, n:10,
+  rules:"Donnez le chiffre exact (délai, durée, taux, montant…). L'équipe la plus proche gagne 150 points, la 2e 100, la 3e 50. Réponse exacte : bonus de 50 points."},
+ {id:"mot", title:"Le Mot Mystère", insp:"Inspiré de Motus et Wordle", ic:"🔤", dur:45, n:10,
   rules:"Une définition et un mot caché. Une lettre se dévoile toutes les 5 secondes. Plus vous trouvez tôt, plus vous gagnez (200 points, −25 par lettre dévoilée). Un seul essai !"},
- {id:"tri", title:"Le Grand Tri", insp:"Inspiré des jeux de tri Wordwall", ic:"🗂️", dur:50, n:2,
+ {id:"qsj", title:"Qui suis-je ?", insp:"Inspiré des devinettes d'Akinator", ic:"🕵️", dur:40, n:8,
+  rules:"Quatre indices apparaissent un par un, toutes les 10 secondes. Trouvez de quoi il s'agit : 200 points avec 1 indice, 150 avec 2, 100 avec 3, 60 avec 4. Un seul essai !"},
+ {id:"intrus", title:"L'Intrus", insp:"Inspiré de Burger Quiz", ic:"🙃", dur:20, n:10,
+  rules:"Quatre propositions : trois vont ensemble, une ne devrait pas être là. Trouvez l'intrus ! 100 points + jusqu'à 50 points de rapidité."},
+ {id:"ordre", title:"La Frise", insp:"Inspiré du jeu Timeline", ic:"📅", dur:45, n:6,
+  rules:"Remettez les étapes dans le bon ordre en donnant un rang à chacune. 30 points par étape bien placée, bonus de 50 points si tout est juste. Validez avant la fin (sinon, envoi automatique)."},
+ {id:"tri", title:"Le Grand Tri", insp:"Inspiré des jeux de tri Wordwall", ic:"🗂️", dur:50, n:4,
   rules:"Huit éléments à classer dans la bonne catégorie. 25 points par élément bien classé. Validez avant la fin du chrono (sinon, envoi automatique)."},
- {id:"buzz", title:"Face à Face", insp:"Inspiré de Questions pour un champion", ic:"🔴", dur:15, n:8,
+ {id:"chrono", title:"Le Contre-la-montre", insp:"Inspiré du Maillon faible", ic:"⏱️", dur:90, n:2,
+  rules:"Une manche de 90 secondes : chaque équipe enchaîne le plus de questions possible à son rythme, sans correction pendant la course. +20 points par bonne réponse, −10 par erreur. Vitesse ET précision !"},
+ {id:"mise", title:"Tout ou Rien", insp:"Inspiré de Money Drop", ic:"💰", dur:25, n:5,
+  rules:"Avant de voir la question, chaque équipe mise une partie de ses points. Bonne réponse : vous gagnez votre mise. Mauvaise réponse ou pas de réponse : vous la perdez !"},
+ {id:"buzz", title:"Face à Face", insp:"Inspiré de Questions pour un champion", ic:"🔴", dur:15, n:15,
   rules:"La première équipe qui buzze répond à l'oral. Bonne réponse : +150 points. Mauvaise réponse : −50 points et l'équipe ne peut plus buzzer sur cette question ; les autres ont 10 secondes."}
 ];
 const TEAMC=["var(--t0)","var(--t1)","var(--t2)"];
+const QCMLIKE=["qcm","intrus","mise"];
+const BANKOF=g=>g==="mise"?"qcm":g;
+function bankSize(g){return g==="chrono"?20:BANK[BANKOF(g)].length;}
+function miseMax(score){return Math.max(100,Math.min(500,score));}
 
 /* ======================================================================
    4) RÉSEAU — Supabase Realtime (Broadcast), comme les jeux Stop microbes.
@@ -325,7 +625,7 @@ function home(){
   <div class="center" style="padding-top:30px">
     <div class="logo">Cabinet Vasseur présente</div>
     <h1 class="big">Le Grand Concours de l'Immo</h1>
-    <div class="sub">Six mini-jeux chronométrés · trois équipes · un vainqueur</div>
+    <div class="sub">Onze mini-jeux chronométrés · près de 400 questions · trois équipes · un vainqueur</div>
   </div>
   <div class="grid2 mt" style="max-width:900px;margin:30px auto 0">
     <div class="card center"><div style="font-size:54px">🖥️</div><h2>PC central</h2><p class="small">Pour le formateur, projeté au tableau.</p><button class="btn amb" onclick="centralStart()">Je suis le formateur</button></div>
@@ -337,15 +637,15 @@ function home(){
    7) PC CENTRAL (il fait foi : chrono, réponses, scores)
    ====================================================================== */
 let G=null, LOOP=null, HB=null;
-function saveG(){try{localStorage.setItem("gci_central",JSON.stringify(G));}catch(e){}}
+function saveG(){try{localStorage.setItem("gci_central_v2",JSON.stringify(G));}catch(e){}}
 function centralStart(){
-  let prev=null;try{prev=JSON.parse(localStorage.getItem("gci_central")||"null");}catch(e){}
+  let prev=null;try{prev=JSON.parse(localStorage.getItem("gci_central_v2")||"null");}catch(e){}
   app().innerHTML=`<div class="card" style="max-width:820px;margin:30px auto">
    <div class="logo">PC central</div><h2>Préparer la partie</h2>
    <div class="grid3">${[0,1,2].map(i=>`<div><label class="l">Équipe ${i+1}</label><input id="tn${i}" value="${esc(prev?prev.teams[i].name:["Les Négociateurs","Les Gestionnaires","Les Syndics"][i])}"></div>`).join("")}</div>
    <div class="row mt"><button class="btn amb" onclick="newSession()">Nouvelle partie</button>
    ${prev?`<button class="btn ghost" onclick="resumeSession()">Reprendre la partie ${esc(prev.code)} (scores conservés)</button>`:""}</div>
-   <p class="small mt">Une nouvelle partie génère un code à donner aux équipes et remet les scores à zéro.</p>
+   <p class="small mt">Une nouvelle partie génère un code à donner aux équipes et remet les scores à zéro. Les questions déjà posées ne reviennent pas tant que la banque n'est pas épuisée.</p>
   </div>`;
 }
 async function openCentral(){
@@ -359,7 +659,7 @@ async function newSession(){
   saveG();await openCentral();pushState();lobby();
 }
 async function resumeSession(){
-  G=JSON.parse(localStorage.getItem("gci_central"));G.joined=[false,false,false];
+  G=JSON.parse(localStorage.getItem("gci_central_v2"));G.joined=[false,false,false];
   if(G.cur&&G.cur.phase!=="reveal"){G.cur=null;G.phase="menu";}
   await openCentral();
   if(G.phase==="lobby")lobby();else menu();
@@ -367,8 +667,13 @@ async function resumeSession(){
 function sendState(){
   if(!G)return;const c=G.cur;
   const st={v:G.v,phase:G.phase,teams:G.teams.map(t=>({name:t.name,score:t.score}))};
-  if(c&&G.phase==="game"){Object.assign(st,{game:c.game,gtitle:gameDef(c.game).title,qid:c.qid,num:c.i+1,total:c.list.length,qphase:c.phase,dur:c.dur,payload:c.payload,mask:c.mask||null,excluded:c.excluded||[],buzzed:c.buzzed??null,attempt:c.attempt||0,results:c.results||null,correct:c.correctLabel||null,got:[0,1,2].map(k=>!!(c.answers&&k in c.answers))});
-    if(c.startAt&&(c.phase==="question"||c.phase==="buzz"))st.remMs=c.startAt+c.dur*1000-now();}
+  if(c&&G.phase==="game"){
+    Object.assign(st,{game:c.game,gtitle:gameDef(c.game).title,qid:c.qid,num:c.i+1,total:c.list.length,qphase:c.phase,dur:c.dur,payload:c.payload,
+      mask:c.mask||null,clues:c.clues||null,excluded:c.excluded||[],buzzed:c.buzzed??null,attempt:c.attempt||0,results:c.results||null,correct:c.correctLabel||null,
+      got:[0,1,2].map(k=>!!(c.answers&&k in c.answers)),wgot:[0,1,2].map(k=>!!(c.wagers&&k in c.wagers)),wagers:c.wagerDone?c.wagers:null,wmax:c.wmax||null});
+    if(c.game==="chrono"&&c.ca)st.rc=[0,1,2].map(k=>Object.keys(c.ca[k]).map(Number));
+    if(c.startAt&&["question","buzz","wager"].includes(c.phase))st.remMs=c.startAt+c.dur*1000-now();
+  }
   Object.assign(st,G.lastExtra||{});
   Net.send({t:"st",s:st});
 }
@@ -379,11 +684,19 @@ function centralOnMsg(m){
   if(!G||!m)return;
   if(m.t==="hello"){sendState();return;}
   if(m.t==="join"){const k=m.team;if(!G.joined[k]){G.joined[k]=true;sndJoin();}markJoined();sendState();return;}
-  const c=G.cur;if(!c)return;
-  if(m.t==="ans"&&c.phase==="question"&&m.qid===c.qid&&!(m.team in c.answers)){
-    const t=now()-c.startAt;if(t<=c.dur*1000+800){c.answers[m.team]={v:m.v,t:Math.max(0,t)};updChips();sendState();}
+  const c=G.cur;if(!c||m.qid!==c.qid)return;
+  const inTime=extra=>now()<=c.startAt+c.dur*1000+extra;
+  if(m.t==="ans"&&c.phase==="question"&&!(m.team in c.answers)&&inTime(800)){
+    c.answers[m.team]={v:m.v,t:Math.max(0,now()-c.startAt)};updChips();sendState();
   }
-  if(m.t==="bz"&&c.phase==="buzz"&&m.qid===c.qid&&m.attempt===c.attempt&&!c.excluded.includes(m.team)&&now()<=c.startAt+c.dur*1000+500){
+  if(m.t==="wg"&&c.phase==="wager"&&!(m.team in c.wagers)&&inTime(800)){
+    const mx=c.wmax[m.team];c.wagers[m.team]=Math.max(0,Math.min(mx,Math.round(+m.w||0)));updChips(true);sendState();
+  }
+  if(m.t==="ca"&&c.phase==="question"&&c.game==="chrono"&&inTime(800)){
+    if(!(m.i in c.ca[m.team])){c.ca[m.team][m.i]=m.v;updChrono();}
+    sendState();
+  }
+  if(m.t==="bz"&&c.phase==="buzz"&&m.attempt===c.attempt&&!c.excluded.includes(m.team)&&inTime(500)){
     clearInterval(LOOP);c.buzzed=m.team;c.phase="buzzed";sndBuzz();pushState();renderQ();
   }
 }
@@ -408,45 +721,65 @@ function lobby(){
 }
 function menu(){
   clearInterval(LOOP);G.phase="menu";G.cur=null;pushState();
-  app().innerHTML=`<div class="qhead"><div><div class="logo">Le Grand Concours de l'Immo</div><h1 class="big" style="font-size:38px">Choisissez le prochain jeu</h1></div><button class="btn red" onclick="finale()">🏆 Podium final</button></div>
-  <div class="cwrap mt"><div class="games">${GAMES.map(g=>`<div class="gtile ${G.played[g.id]?"done":""}" onclick="intro('${g.id}')"><div class="ic">${g.ic}</div><div class="insp">${g.insp}</div><h3>${g.title}</h3><div class="meta">${g.n} questions · ${g.dur} s par question</div></div>`).join("")}</div>${scoreboardHTML()}</div>`;
+  const done=GAMES.filter(g=>G.played[g.id]).length;
+  app().innerHTML=`<div class="qhead"><div><div class="logo">Le Grand Concours de l'Immo · ${done} / ${GAMES.length} jeux joués</div><h1 class="big" style="font-size:38px">Choisissez le prochain jeu</h1></div><button class="btn red" onclick="finale()">🏆 Podium final</button></div>
+  <div class="cwrap mt"><div class="games">${GAMES.map(g=>`<div class="gtile ${G.played[g.id]?"done":""}" onclick="intro('${g.id}')"><div class="ic">${g.ic}</div><div class="insp">${g.insp}</div><h3>${g.title}</h3><div class="meta">${g.id==="chrono"?g.n+" manches de "+g.dur+" s":g.n+" questions · "+g.dur+" s"}</div></div>`).join("")}</div>${scoreboardHTML()}</div>`;
 }
 function intro(gid){
   const g=gameDef(gid);
   G.phase="intro";G.cur=null;pushState({introGame:g.title,introRules:g.rules,introIc:g.ic});
+  const max=bankSize(gid);
+  const counts=gid==="chrono"?[1,2,3,4]:[3,5,6,8,10,12,15,20,25,30,40].filter(n=>n<=max);
+  if(!counts.includes(g.n)&&g.n<=max)counts.push(g.n);counts.sort((a,b)=>a-b);
+  const durs=gid==="chrono"?[60,90,120,150]:[8,10,15,20,25,30,40,45,50,60];
   app().innerHTML=`<div class="cwrap"><div class="card center" style="padding:40px">
      <div style="font-size:80px">${g.ic}</div><div class="insp" style="color:var(--amber);font-weight:800;text-transform:uppercase">${g.insp}</div>
      <h1 class="big">${g.title}</h1><p style="font-size:24px;line-height:1.5;max-width:850px;margin:18px auto">${g.rules}</p>
-     <div class="row" style="justify-content:center"><label class="small">Nombre de questions</label><select id="nq" style="width:90px">${[2,3,4,5,6,8,10,12].filter(n=>n<=BANK[gid].length).map(n=>`<option ${n===g.n?"selected":""}>${n}</option>`).join("")}</select>
-     <label class="small">Chrono (s)</label><select id="dq" style="width:90px">${[8,10,15,20,25,30,45,50,60].map(n=>`<option ${n===g.dur?"selected":""}>${n}</option>`).join("")}</select></div>
+     <div class="row" style="justify-content:center"><label class="small">${gid==="chrono"?"Nombre de manches":"Nombre de questions"}</label><select id="nq" style="width:90px">${counts.map(n=>`<option ${n===g.n?"selected":""}>${n}</option>`).join("")}</select>
+     <label class="small">Chrono (s)</label><select id="dq" style="width:90px">${durs.map(n=>`<option ${n===g.dur?"selected":""}>${n}</option>`).join("")}</select></div>
+     <p class="small">${gid==="chrono"?"Chaque manche propose 30 questions tirées au hasard.":"Banque disponible : "+max+" questions."}</p>
      <div class="row mt" style="justify-content:center"><button class="btn ghost" onclick="menu()">← Retour</button><button class="btn amb" onclick="startGame('${gid}')">C'est parti ! ▶</button></div>
   </div>${scoreboardHTML()}</div>`;
 }
 function draw(gid,n){
-  const used=G.used[gid]||[];const idx=BANK[gid].map((_,i)=>i);
+  const b=BANKOF(gid);
+  const used=G.used[b]||[];const idx=BANK[b].map((_,i)=>i);
   let fresh=shuffle(idx.filter(i=>!used.includes(i)));
-  if(fresh.length<n){fresh=fresh.concat(shuffle(idx.filter(i=>!fresh.includes(i))));}
-  const pick=fresh.slice(0,n);G.used[gid]=used.concat(pick);return pick;
+  if(fresh.length<n){G.used[b]=[];fresh=fresh.concat(shuffle(idx.filter(i=>!fresh.includes(i))));}
+  const pick=fresh.slice(0,n);G.used[b]=(G.used[b]||[]).concat(pick);return pick;
 }
 function startGame(gid){
   const n=+$("#nq").value, dur=+$("#dq").value;
-  G.cur={game:gid,list:draw(gid,n),i:-1,dur,baseDur:dur,gained:[0,0,0]};
+  const list=gid==="chrono"?Array.from({length:n},(_,i)=>i):draw(gid,n);
+  G.cur={game:gid,list,i:-1,dur,baseDur:dur,gained:[0,0,0]};
   G.phase="game";nextQ();
+}
+function buildChronoItems(){
+  const items=[],key=[];
+  const vfs=draw("vf",15), qs=draw("qcm",15);
+  vfs.forEach(i=>{const q=BANK.vf[i];items.push({t:q.t,o:["VRAI","FAUX"]});key.push(q.a?0:1);});
+  qs.forEach(i=>{const q=BANK.qcm[i];const ord=shuffle([0,1,2,3]);items.push({t:q.t,o:ord.map(k=>q.o[k])});key.push(ord.indexOf(0));});
+  const order=shuffle(items.map((_,i)=>i));
+  return {items:order.map(i=>items[i]),key:order.map(i=>key[i])};
 }
 function nextQ(){
   clearInterval(LOOP);
   const c=G.cur;c.i++;
   if(c.i>=c.list.length)return endGame();
-  const gid=c.game,q=BANK[gid][c.list[c.i]];
+  const gid=c.game;const q=gid==="chrono"?null:BANK[BANKOF(gid)][c.list[c.i]];
   G.qc++;c.qid=gid+G.qc+Math.random().toString(36).slice(2,5);
-  c.answers={};c.results=null;c.correctLabel=null;c.mask=null;c.excluded=[];c.buzzed=null;c.attempt=1;c.lastTick=null;
+  Object.assign(c,{answers:{},results:null,correctLabel:null,mask:null,clues:null,excluded:[],buzzed:null,attempt:1,lastTick:null,wagers:null,wagerDone:false,wmax:null,ca:null});
   c.dur=c.baseDur||gameDef(gid).dur;
-  if(gid==="qcm"){c.order=shuffle([0,1,2,3]);c.payload={t:q.t,o:c.order.map(k=>q.o[k])};c.right=c.order.indexOf(q.a);c.correctLabel="ABCD"[c.right]+". "+q.o[q.a];}
+  if(QCMLIKE.includes(gid)){c.order=shuffle([0,1,2,3]);c.payload={t:q.t,o:c.order.map(k=>q.o[k])};c.right=c.order.indexOf(0);c.correctLabel="ABCD"[c.right]+". "+q.o[0];}
+  if(gid==="mise"){c.wagers={};c.wmax=G.teams.map(t=>miseMax(t.score));c.qpay=c.payload;c.payload={hidden:true};}
   if(gid==="vf"){c.payload={t:q.t};c.correctLabel=q.a?"VRAI":"FAUX";}
   if(gid==="num"){c.payload={t:q.t,u:q.u};c.correctLabel=q.a+" "+q.u;}
   if(gid==="mot"){const w=q.w;c.letters=[...w].map((ch,i)=>/[A-Z]/.test(ch)?i:-1).filter(i=>i>=0);c.revOrder=shuffle(c.letters);c.revealed=0;c.mask=maskOf(w,[]);c.payload={d:q.d,len:c.letters.length};c.correctLabel=w;c.step=5;}
+  if(gid==="qsj"){c.step=Math.max(4,Math.floor(c.dur/4));c.clues=[q.c[0]];c.payload={n:q.c.length};c.correctLabel=q.w;}
   if(gid==="tri"){c.items=shuffle(q.items.map((it,k)=>k));c.payload={t:q.t,c:q.c,items:c.items.map(k=>q.items[k][0])};}
+  if(gid==="ordre"){c.items=shuffle(q.items.map((it,k)=>k));c.payload={t:q.t,items:c.items.map(k=>q.items[k])};c.correctLabel=q.items.map((x,k)=>(k+1)+". "+x).join("   ");}
   if(gid==="buzz"){c.payload={t:q.t};c.correctLabel=q.r;}
+  if(gid==="chrono"){const b=buildChronoItems();c.payload={items:b.items};c.key=b.key;c.ca={0:{},1:{},2:{}};}
   c.phase="ready";c.startAt=null;
   renderQ();pushState();
 }
@@ -454,8 +787,9 @@ function maskOf(w,revIdx){return [...w].map((ch,i)=>/[A-Z]/.test(ch)?(revIdx.inc
 function launchQ(){
   const c=G.cur;
   if(c.game==="buzz")c.dur=c.attempt>1?10:c.baseDur;
+  if(c.game==="mise"&&!c.wagerDone){c.dur=20;c.phase="wager";}
+  else{if(c.game==="mise"){c.dur=c.baseDur;c.payload=c.qpay;}c.phase=c.game==="buzz"?"buzz":"question";}
   c.startAt=now();c.lastTick=null;
-  c.phase=c.game==="buzz"?"buzz":"question";
   pushState();renderQ();
   clearInterval(LOOP);LOOP=setInterval(tick,250);
 }
@@ -465,24 +799,34 @@ function tick(){
   const tw=document.getElementById("tw");if(tw)tw.innerHTML=timerSVG(rem,c.dur);
   const s=Math.ceil(rem);if(rem>0&&s<=5&&c.lastTick!==s){c.lastTick=s;sndTick();}
   if(c.phase==="question"){
-    if(c.game==="mot"){const el=(now()-c.startAt)/1000;const want=Math.min(c.letters.length-2,Math.floor(el/c.step));if(want>c.revealed){c.revealed=want;c.mask=maskOf(BANK.mot[c.list[c.i]].w,c.revOrder.slice(0,want));const m=document.getElementById("maskC");if(m)m.textContent=c.mask;pushState();}}
+    const el=(now()-c.startAt)/1000;
+    if(c.game==="mot"){const want=Math.min(c.letters.length-2,Math.floor(el/c.step));if(want>c.revealed){c.revealed=want;c.mask=maskOf(BANK.mot[c.list[c.i]].w,c.revOrder.slice(0,want));const m=document.getElementById("maskC");if(m)m.textContent=c.mask;pushState();}}
+    if(c.game==="qsj"){const q=BANK.qsj[c.list[c.i]];const want=Math.min(q.c.length,1+Math.floor(el/c.step));if(want>c.clues.length){c.clues=q.c.slice(0,want);renderQ();pushState();}}
+    if(c.game==="chrono"){const N=c.payload.items.length;if([0,1,2].every(k=>Object.keys(c.ca[k]).length>=N)||rem<=-0.9)closeQ();return;}
     if(Object.keys(c.answers).length>=3||rem<=-0.9){closeQ();}
+  }else if(c.phase==="wager"){
+    if(Object.keys(c.wagers).length>=3||rem<=-0.9){clearInterval(LOOP);for(let k=0;k<3;k++)if(!(k in c.wagers))c.wagers[k]=0;c.wagerDone=true;c.phase="ready";c.startAt=null;sndEnd();pushState();renderQ();}
   }else if(c.phase==="buzz"){
     if(rem<=-0.6){clearInterval(LOOP);sndEnd();c.results={};c.phase="reveal";pushState();renderQ();}
   }
 }
-function updChips(){const c=G.cur;for(let k=0;k<3;k++){const el=document.getElementById("as"+k);if(el)el.innerHTML=(k in c.answers)?'<span class="ok">✔ Réponse reçue</span>':'<span class="small">en attente…</span>';}}
+function updChips(w){const c=G.cur;for(let k=0;k<3;k++){const el=document.getElementById("as"+k);if(!el)continue;const ok=w?(c.wagers&&k in c.wagers):(k in c.answers);el.innerHTML=ok?`<span class="ok">✔ ${w?"Mise reçue":"Réponse reçue"}</span>`:'<span class="small">en attente…</span>';}}
+function updChrono(){const c=G.cur;const N=c.payload.items.length;for(let k=0;k<3;k++){const n=Object.keys(c.ca[k]).length;const b=document.getElementById("cb"+k);if(b)b.style.width=(n/N*100)+"%";const t=document.getElementById("ct"+k);if(t)t.textContent=n+" / "+N;}}
 function closeQ(){
   const c=G.cur;if(c.phase!=="question")return;
   clearInterval(LOOP);sndEnd();
-  const q=BANK[c.game][c.list[c.i]];
+  const q=c.game==="chrono"?null:BANK[BANKOF(c.game)][c.list[c.i]];
   const R={};const speed=k=>c.answers[k]?Math.max(0,1-c.answers[k].t/(c.dur*1000)):0;
   for(let k=0;k<3;k++){
     const a=c.answers[k];
-    if(c.game==="qcm"){const ok=!!a&&a.v===c.right;R[k]={ok,pts:ok?Math.round(100+50*speed(k)):0,label:a?"ABCD"[a.v]+". "+c.payload.o[a.v]:"Pas de réponse"};}
+    if(c.game==="qcm"||c.game==="intrus"){const ok=!!a&&a.v===c.right;R[k]={ok,pts:ok?Math.round(100+50*speed(k)):0,label:a?"ABCD"[a.v]+". "+c.payload.o[a.v]:"Pas de réponse"};}
+    if(c.game==="mise"){const ok=!!a&&a.v===c.right;const w=c.wagers[k]||0;R[k]={ok,pts:ok?w:-w,label:(a?"ABCD"[a.v]+". "+c.payload.o[a.v]:"Pas de réponse")+" · mise "+w};}
     if(c.game==="vf"){const ok=!!a&&a.v===q.a;R[k]={ok,pts:ok?Math.round(60+40*speed(k)):0,label:a?(a.v?"VRAI":"FAUX"):"Pas de réponse"};}
     if(c.game==="mot"){const ok=!!a&&[q.w].concat(q.alt||[]).some(x=>norm(x)===norm(a.v));const rev=a?Math.min(c.letters.length-2,Math.floor((a.t/1000)/c.step)):0;R[k]={ok,pts:ok?Math.max(50,200-25*rev):0,label:a?a.v:"Pas de réponse"};}
+    if(c.game==="qsj"){const ok=!!a&&[q.w].concat(q.alt||[]).some(x=>norm(x)===norm(a.v));const seen=a?Math.min(q.c.length,1+Math.floor((a.t/1000)/c.step)):4;R[k]={ok,pts:ok?[200,150,100,60][seen-1]:0,label:a?a.v+" ("+seen+" indice"+(seen>1?"s":"")+")":"Pas de réponse"};}
     if(c.game==="tri"){const v=a?a.v:[];let n=0;c.items.forEach((it,j)=>{if(v[j]===q.items[it][1])n++;});R[k]={ok:n===c.items.length,pts:n*25,label:n+" / "+c.items.length+" bien classés",part:n>0&&n<c.items.length};}
+    if(c.game==="ordre"){const v=a?a.v:[];let n=0;c.items.forEach((orig,j)=>{if(v[j]===orig)n++;});const all=n===c.items.length;R[k]={ok:all,pts:n*30+(all?50:0),label:n+" / "+c.items.length+" bien placées",part:n>0&&!all};}
+    if(c.game==="chrono"){let ok=0,ko=0;Object.entries(c.ca[k]).forEach(([i,v])=>{if(v===c.key[+i])ok++;else ko++;});R[k]={ok:ok>0&&ko===0,part:ok>0&&ko>0,pts:Math.max(0,ok*20-ko*10),label:ok+" bonne"+(ok>1?"s":"")+" · "+ko+" erreur"+(ko>1?"s":"")};}
   }
   if(c.game==="num"){
     const ans=[0,1,2].filter(k=>c.answers[k]&&c.answers[k].v!==""&&!isNaN(+c.answers[k].v)).map(k=>({k,d:Math.abs(+c.answers[k].v-q.a)}));
@@ -495,6 +839,7 @@ function closeQ(){
   for(let k=0;k<3;k++){G.teams[k].score+=R[k].pts;c.gained[k]+=R[k].pts;}
   if([0,1,2].some(k=>R[k].ok))sndOk();
   if(c.game==="tri")c.correctLabel=q.c.map((cat,ci)=>cat+" : "+q.items.filter(it=>it[1]===ci).map(it=>it[0]).join(", ")).join(" — ");
+  if(c.game==="chrono")c.correctLabel=null;
   c.results=R;c.phase="reveal";
   pushState();renderQ();
 }
@@ -508,16 +853,25 @@ function buzzJudge(ok){
 function skipBuzz(){clearInterval(LOOP);const c=G.cur;c.results={};c.phase="reveal";pushState();renderQ();}
 
 function renderQ(){
-  const c=G.cur,g=gameDef(c.game),q=BANK[c.game][c.list[c.i]];
+  const c=G.cur,g=gameDef(c.game),q=c.game==="chrono"?null:BANK[BANKOF(c.game)][c.list[c.i]];
   let body="";
-  const head=`<div class="qhead"><div><div class="qnum">${g.ic} ${g.title} · Question ${c.i+1} / ${c.list.length}</div></div><div id="tw">${c.phase==="ready"?timerSVG(c.dur,c.dur):(c.startAt?timerSVG((c.startAt+c.dur*1000-now())/1000,c.dur):"")}</div></div>`;
-  if(c.game==="qcm"){
-    body=`<div class="qtext">${esc(c.payload.t)}</div><div class="opts">${c.payload.o.map((o,j)=>`<div class="opt o${j} ${c.phase==="reveal"?(j===c.right?"right":"dim"):""}"><span class="sh">${"▲◆●■"[j]}</span>${"ABCD"[j]}. ${esc(o)}</div>`).join("")}</div>`;
+  const lab=c.game==="chrono"?"Manche":"Question";
+  const head=`<div class="qhead"><div><div class="qnum">${g.ic} ${g.title} · ${lab} ${c.i+1} / ${c.list.length}</div></div><div id="tw">${c.phase==="ready"?timerSVG(c.game==="mise"&&!c.wagerDone?20:c.dur,c.game==="mise"&&!c.wagerDone?20:c.dur):(c.startAt?timerSVG((c.startAt+c.dur*1000-now())/1000,c.dur):"")}</div></div>`;
+  if(QCMLIKE.includes(c.game)){
+    if(c.game==="mise"&&!c.wagerDone){
+      body=`<div class="qtext">💰 Faites vos jeux ! Misez avant de découvrir la question.</div><div class="grid3">${G.teams.map((t,k)=>`<div class="card tc${k} center"><b>${esc(t.name)}</b><div class="small">Mise maximale : ${c.wmax[k]} pts</div></div>`).join("")}</div>`;
+    } else {
+      if(c.game==="mise")body+=`<div class="ansbar">${G.teams.map((t,k)=>`<div class="chip tc${k}"><span>${esc(t.name)}</span><span>mise ${c.wagers[k]}</span></div>`).join("")}</div>`;
+      body+=c.phase==="ready"&&c.game==="mise"?`<div class="qtext">Les mises sont faites. Prêts pour la question ?</div>`:`<div class="qtext">${esc(c.payload.t)}</div><div class="opts">${c.payload.o.map((o,j)=>`<div class="opt o${j} ${c.phase==="reveal"?(j===c.right?"right":"dim"):""}"><span class="sh">${"▲◆●■"[j]}</span>${"ABCD"[j]}. ${esc(o)}</div>`).join("")}</div>`;
+    }
   }
   if(c.game==="vf"){body=`<div class="qtext">${esc(c.payload.t)}</div><div class="opts"><div class="opt o3 ${c.phase==="reveal"?(q.a?"right":"dim"):""}"><span class="sh">✔</span>VRAI</div><div class="opt o0 ${c.phase==="reveal"?(!q.a?"right":"dim"):""}"><span class="sh">✘</span>FAUX</div></div>`;}
-  if(c.game==="num"){body=`<div class="qtext">${esc(c.payload.t)} <span style="color:var(--amber)">(en ${esc(c.payload.u)})</span></div>`;}
+  if(c.game==="num"){body=`<div class="qtext">${esc(c.payload.t)} <span style="color:var(--amber)">${c.payload.u?"(en "+esc(c.payload.u)+")":""}</span></div>`;}
   if(c.game==="mot"){body=`<div class="qtext">${esc(c.payload.d)}</div><div class="mask" id="maskC">${c.phase==="reveal"?esc(q.w):esc(c.mask)}</div>`;}
+  if(c.game==="qsj"){const shown=c.phase==="reveal"?q.c:(c.phase==="ready"?[]:c.clues);body=`<div class="qtext">Qui suis-je ?</div>${shown.map((cl,i)=>`<div class="triitem" style="font-size:24px"><span>🔎 Indice ${i+1} : ${esc(cl)}</span></div>`).join("")}${c.phase==="ready"?`<p class="sub">Les indices apparaîtront au lancement du chrono.</p>`:""}`;}
   if(c.game==="tri"){body=`<div class="qtext">${esc(c.payload.t)}</div><div class="grid2">${c.payload.items.map((it,j)=>`<div class="triitem"><span>${esc(it)}</span>${c.phase==="reveal"?`<b style="color:var(--amber)">${esc(q.c[q.items[c.items[j]][1]])}</b>`:""}</div>`).join("")}</div>`;}
+  if(c.game==="ordre"){body=`<div class="qtext">${esc(c.payload.t)}</div>${c.phase==="reveal"?q.items.map((it,k)=>`<div class="triitem"><span><b style="color:var(--amber)">${k+1}.</b> ${esc(it)}</span></div>`).join(""):c.payload.items.map(it=>`<div class="triitem"><span>• ${esc(it)}</span></div>`).join("")}`;}
+  if(c.game==="chrono"){const N=c.payload.items.length;body=`<div class="qtext">${c.phase==="ready"?"Prêts ? 30 questions vous attendent sur vos PC.":c.phase==="question"?"Course en cours : répondez sur vos PC !":"Fin de la manche !"}</div>${G.teams.map((t,k)=>{const n=Object.keys(c.ca[k]).length;return `<div style="margin:14px 0"><div class="row" style="justify-content:space-between"><b style="color:${TEAMC[k]};font-size:22px">${esc(t.name)}</b><b id="ct${k}" style="font-size:22px">${n} / ${N}</b></div><div style="height:26px;background:#0A2236;border-radius:13px;overflow:hidden;border:2px solid var(--line)"><div id="cb${k}" style="height:100%;width:${n/N*100}%;background:${TEAMC[k]};transition:width .3s"></div></div></div>`;}).join("")}`;}
   if(c.game==="buzz"){body=`<div class="qtext">${esc(c.payload.t)}</div>`;
     if(c.phase==="buzzed")body+=`<div class="card tc${c.buzzed} flash center" style="font-size:40px;font-weight:900">🔴 ${esc(G.teams[c.buzzed].name)} a buzzé !</div>
       <details class="mt"><summary class="small">Afficher la réponse attendue (formateur)</summary><div class="answer-box">${esc(q.r)}</div></details>
@@ -525,17 +879,21 @@ function renderQ(){
     if(c.excluded.length&&c.phase!=="reveal")body+=`<p class="small">Ne peuvent plus buzzer : ${c.excluded.map(k=>esc(G.teams[k].name)).join(", ")}</p>`;
   }
   let foot="";
-  if(c.phase==="ready")foot=`<div class="row mt"><button class="btn amb" onclick="launchQ()">▶ Lancer le chrono</button><button class="btn ghost" onclick="endGame()">Terminer ce jeu</button></div>`;
-  if(c.phase==="question")foot=`<div class="ansbar">${G.teams.map((t,k)=>`<div class="chip tc${k}"><span>${esc(t.name)}</span><span id="as${k}"><span class="small">en attente…</span></span></div>`).join("")}</div><div class="row mt"><button class="btn ghost sm" onclick="closeQ()">Arrêter le chrono et corriger</button></div>`;
+  if(c.phase==="ready")foot=`<div class="row mt"><button class="btn amb" onclick="launchQ()">▶ ${c.game==="mise"&&!c.wagerDone?"Ouvrir les mises":"Lancer le chrono"}</button><button class="btn ghost" onclick="endGame()">Terminer ce jeu</button></div>`;
+  if(c.phase==="question"&&c.game!=="chrono")foot=`<div class="ansbar">${G.teams.map((t,k)=>`<div class="chip tc${k}"><span>${esc(t.name)}</span><span id="as${k}"><span class="small">en attente…</span></span></div>`).join("")}</div><div class="row mt"><button class="btn ghost sm" onclick="closeQ()">Arrêter le chrono et corriger</button></div>`;
+  if(c.phase==="question"&&c.game==="chrono")foot=`<div class="row mt"><button class="btn ghost sm" onclick="closeQ()">Arrêter la manche et corriger</button></div>`;
+  if(c.phase==="wager")foot=`<div class="ansbar">${G.teams.map((t,k)=>`<div class="chip tc${k}"><span>${esc(t.name)}</span><span id="as${k}"><span class="small">en attente…</span></span></div>`).join("")}</div>`;
   if(c.phase==="buzz")foot=`<p class="sub">🔴 Buzzez sur vos PC !</p><div class="row mt"><button class="btn ghost sm" onclick="skipBuzz()">Personne ne trouve : réponse</button></div>`;
   if(c.phase==="reveal"){
-    if(c.game!=="tri"&&c.game!=="qcm"&&c.game!=="vf")foot+=`<div class="answer-box">Réponse : ${esc(c.correctLabel)}</div>`;
+    if(c.correctLabel&&!["qcm","intrus","mise","vf","tri"].includes(c.game))foot+=`<div class="answer-box">Réponse : ${esc(c.correctLabel)}</div>`;
+    if(c.game==="tri")foot+=`<div class="answer-box" style="font-size:17px">${esc(c.correctLabel)}</div>`;
     if(c.game==="buzz"){const k=Object.keys(c.results||{})[0];foot+=k!==undefined?`<p style="font-size:24px" class="ok">${esc(G.teams[k].name)} remporte 150 points !</p>`:`<p class="sub">Aucune équipe ne marque sur cette question.</p>`;}
-    else foot+=`<table class="res mt"><tr><th>Équipe</th><th>Réponse</th><th>Points</th></tr>${G.teams.map((t,k)=>{const r=c.results[k];return `<tr><td><b style="color:${TEAMC[k]}">${esc(t.name)}</b></td><td class="${r.ok?"ok":(r.part?"":"ko")}">${r.ok?"✔ ":(r.part?"◐ ":"✘ ")}${esc(r.label)}</td><td><b>+${r.pts}</b></td></tr>`;}).join("")}</table>`;
-    foot+=`<div class="row mt"><button class="btn amb" onclick="nextQ()">${c.i+1<c.list.length?"Question suivante →":"Voir le bilan du jeu →"}</button></div>`;
+    else foot+=`<table class="res mt"><tr><th>Équipe</th><th>Réponse</th><th>Points</th></tr>${G.teams.map((t,k)=>{const r=c.results[k];return `<tr><td><b style="color:${TEAMC[k]}">${esc(t.name)}</b></td><td class="${r.ok?"ok":(r.part?"":"ko")}">${r.ok?"✔ ":(r.part?"◐ ":"✘ ")}${esc(r.label)}</td><td><b>${r.pts>=0?"+":""}${r.pts}</b></td></tr>`;}).join("")}</table>`;
+    foot+=`<div class="row mt"><button class="btn amb" onclick="nextQ()">${c.i+1<c.list.length?(c.game==="chrono"?"Manche suivante →":"Question suivante →"):"Voir le bilan du jeu →"}</button></div>`;
   }
   app().innerHTML=`<div class="cwrap"><div class="card">${head}${body}${foot}</div>${scoreboardHTML()}</div>`;
-  if(c.phase==="question")updChips();
+  if(c.phase==="question"&&c.game!=="chrono")updChips();
+  if(c.phase==="wager")updChips(true);
 }
 function endGame(){
   clearInterval(LOOP);const c=G.cur;G.played[c.game]=true;
@@ -543,7 +901,7 @@ function endGame(){
   pushState({gtitle:g.title,gained:c.gained});
   const order=[0,1,2].sort((a,b)=>c.gained[b]-c.gained[a]);
   app().innerHTML=`<div class="cwrap"><div class="card center" style="padding:36px"><div style="font-size:70px">${g.ic}</div><h1 class="big">Bilan : ${g.title}</h1>
-   <table class="res" style="max-width:700px;margin:20px auto"><tr><th>Équipe</th><th>Points gagnés dans ce jeu</th><th>Total</th></tr>${order.map(k=>`<tr><td><b style="color:${TEAMC[k]}">${esc(G.teams[k].name)}</b></td><td>+${c.gained[k]}</td><td><b>${G.teams[k].score}</b></td></tr>`).join("")}</table>
+   <table class="res" style="max-width:700px;margin:20px auto"><tr><th>Équipe</th><th>Points dans ce jeu</th><th>Total</th></tr>${order.map(k=>`<tr><td><b style="color:${TEAMC[k]}">${esc(G.teams[k].name)}</b></td><td>${c.gained[k]>=0?"+":""}${c.gained[k]}</td><td><b>${G.teams[k].score}</b></td></tr>`).join("")}</table>
    <button class="btn amb" onclick="menu()">Retour au choix des jeux →</button></div>${scoreboardHTML()}</div>`;
 }
 function finale(){
@@ -564,7 +922,7 @@ function adjustScores(){
 /* ======================================================================
    8) PC D'ÉQUIPE
    ====================================================================== */
-let TM={code:"",team:null,v:-1,qid:null,key:null,sent:false,tri:[],state:null,deadline:null,pend:null,joinHB:null,timerI:null,opened:false};
+let TM={code:"",team:null,v:-1,qid:null,key:null,sent:false,tri:[],ord:[],state:null,deadline:null,pend:null,joinHB:null,timerI:null,opened:false,ci:0,cpend:{}};
 function teamJoinScreen(){
   let prev={};try{prev=JSON.parse(localStorage.getItem("gci_team")||"{}");}catch(e){}
   app().innerHTML=`<div class="card" style="max-width:640px;margin:40px auto">
@@ -596,69 +954,97 @@ function teamOnMsg(m){
   if(!m||m.t!=="st")return;const s=m.s;
   TM.state=s;
   if(TM.team===null)return;
-  // chrono : on cale l'échéance sur le temps restant envoyé par le PC central
-  if(s.remMs!=null){const d=now()+s.remMs;if(TM.deadline==null||Math.abs(d-TM.deadline)>600||TM.dlKey!==s.qid+"|"+s.attempt+"|"+s.qphase){TM.deadline=d;TM.dlKey=s.qid+"|"+s.attempt+"|"+s.qphase;}}
+  if(s.remMs!=null){const d=now()+s.remMs;const dk=s.qid+"|"+s.attempt+"|"+s.qphase;if(TM.deadline==null||Math.abs(d-TM.deadline)>600||TM.dlKey!==dk){TM.deadline=d;TM.dlKey=dk;}}
   else TM.deadline=null;
-  // accusé de réception de notre réponse
-  if(TM.pend&&s.qid===TM.pend.qid&&s.got&&s.got[TM.team]){TM.pend=null;}
+  if(TM.pend&&s.qid===TM.pend.qid){const ack=TM.pend.kind==="wg"?(s.wgot&&s.wgot[TM.team]):(s.got&&s.got[TM.team]);if(ack)TM.pend=null;}
+  if(s.rc&&s.qid===TM.qid){(s.rc[TM.team]||[]).forEach(i=>delete TM.cpend[i]);}
   renderTeamIfNeeded(false);
 }
 function renderTeamIfNeeded(force){
   const s=TM.state;
-  const key=s.phase+"|"+(s.qid||"")+"|"+(s.qphase||"")+"|"+(s.attempt||0)+"|"+(s.phase==="intro"?s.introGame:"");
-  if(s.qid!==TM.qid){TM.qid=s.qid;TM.sent=false;TM.tri=[];TM.pend=null;}
+  const key=s.phase+"|"+(s.qid||"")+"|"+(s.qphase||"")+"|"+(s.attempt||0)+"|"+(s.phase==="intro"?s.introGame:"")+"|"+(s.wagers?"w":"");
+  if(s.qid!==TM.qid){TM.qid=s.qid;TM.sent=false;TM.tri=[];TM.ord=[];TM.pend=null;TM.ci=0;TM.cpend={};TM.wsent=false;}
   if(!force&&TM.key===key){
     updHead();
     if(s.game==="mot"&&s.qphase==="question"){const m=document.getElementById("maskT");if(m)m.textContent=s.mask;}
+    if(s.game==="qsj"&&s.qphase==="question"){const m=document.getElementById("cluesT");if(m)m.innerHTML=cluesHTML(s.clues);}
     return;
   }
   TM.key=key;renderTeam();
 }
+function cluesHTML(cl){return (cl||[]).map((c,i)=>`<div class="triitem" style="font-size:21px"><span>🔎 Indice ${i+1} : ${esc(c)}</span></div>`).join("");}
 function teamHead(){const s=TM.state,t=s.teams[TM.team];return `<div class="thead tc${TM.team}"><span>${esc(t.name)}</span><span id="tscore">${t.score} pts</span></div>`;}
 function updHead(){const el=document.getElementById("tscore");if(el&&TM.state)el.textContent=TM.state.teams[TM.team].score+" pts";}
 function remT(){return TM.deadline==null?null:(TM.deadline-now())/1000;}
 function teamTimer(){
   const s=TM.state;if(!s)return;
-  // renvoi de la réponse tant que le PC central n'a pas accusé réception
   if(TM.pend&&now()-TM.pend.at>1200){TM.pend.at=now();Net.send(TM.pend.m);}
+  const cp=Object.values(TM.cpend);if(cp.length&&(!TM.cpAt||now()-TM.cpAt>1200)){TM.cpAt=now();cp.forEach(m=>Net.send(m));}
   const tw=document.getElementById("ttw");
-  if(!tw||!(s.qphase==="question"||s.qphase==="buzz"))return;
+  if(!tw||!["question","buzz","wager"].includes(s.qphase))return;
   const r=remT();if(r===null)return;tw.innerHTML=timerSVG(r,s.dur);
-  if(r<=0&&s.qphase==="question"&&!TM.sent){
+  if(r<=0&&s.qphase==="question"&&!TM.sent&&s.game!=="chrono"){
     if(s.game==="tri"&&TM.tri.some(x=>x!=null))return sendAns(TM.tri.map(x=>x??-1),true);
+    if(s.game==="ordre"&&TM.ord.some(x=>x!=null))return sendAns(TM.ord.map(x=>x??-1),true);
     lockTeam("⏱️ Temps écoulé !");
   }
+  if(r<=0&&s.qphase==="question"&&s.game==="chrono"){const z=document.getElementById("tz");if(z&&!z.dataset.end){z.dataset.end=1;z.innerHTML=`<div class="verdict neu">⏱️ Fin de la manche ! Regardez l'écran central.</div>`;}}
+  if(r<=0&&s.qphase==="wager"&&!TM.wsent)lockTeam("⏱️ Temps écoulé : mise de 0 point.");
   if(r<=0&&s.qphase==="buzz"){const b=document.getElementById("bzb");if(b&&!b.disabled){b.disabled=true;b.textContent="Temps écoulé";}}
 }
-function lockTeam(msg){document.querySelectorAll("#tz button,#tz input").forEach(e=>e.disabled=true);const m=document.getElementById("tmsg");if(m)m.innerHTML=`<div class="verdict neu">${msg}</div>`;}
+function lockTeam(msg){document.querySelectorAll("#tz button,#tz input,#tz select").forEach(e=>e.disabled=true);const m=document.getElementById("tmsg");if(m)m.innerHTML=`<div class="verdict neu">${msg}</div>`;}
 function sendAns(v,auto){
   if(TM.sent)return;const r=remT();
   if(!auto&&r!==null&&r<-0.3){lockTeam("⏱️ Temps écoulé !");return;}
-  TM.sent=true;lockTeam(auto?"⏱️ Temps écoulé : votre classement a été envoyé.":"✔ Réponse envoyée. Regardez l'écran central !");
+  TM.sent=true;lockTeam(auto?"⏱️ Temps écoulé : votre réponse a été envoyée.":"✔ Réponse envoyée. Regardez l'écran central !");
   const m={t:"ans",qid:TM.state.qid,team:TM.team,v};
-  TM.pend={qid:m.qid,m,at:now()};Net.send(m);
+  TM.pend={qid:m.qid,m,at:now(),kind:"ans"};Net.send(m);
 }
+function sendWager(){
+  if(TM.wsent)return;const s=TM.state;const mx=s.wmax[TM.team];
+  let w=parseInt(document.getElementById("wgIn").value,10);if(isNaN(w))w=0;w=Math.max(0,Math.min(mx,w));
+  TM.wsent=true;lockTeam("✔ Mise de "+w+" points envoyée !");
+  const m={t:"wg",qid:s.qid,team:TM.team,w};TM.pend={qid:m.qid,m,at:now(),kind:"wg"};Net.send(m);
+}
+function setWager(v){const el=document.getElementById("wgIn");if(el&&!el.disabled)el.value=v;}
 function sendBuzz(){
   const s=TM.state;const b=document.getElementById("bzb");b.disabled=true;b.textContent="BUZZÉ !";sndBuzz();
   const m={t:"bz",qid:s.qid,attempt:s.attempt,team:TM.team};Net.send(m);setTimeout(()=>Net.send(m),500);
+}
+function chronoAnswer(v){
+  const s=TM.state;const r=remT();if(r!==null&&r<=0)return;
+  const i=TM.ci;const m={t:"ca",qid:s.qid,team:TM.team,i,v};TM.cpend[i]=m;Net.send(m);
+  TM.ci++;renderChronoItem();
+}
+function renderChronoItem(){
+  const s=TM.state;const z=document.getElementById("tz");if(!z)return;const items=s.payload.items;
+  if(TM.ci>=items.length){z.innerHTML=`<div class="verdict ok">🏁 Toutes les questions sont faites ! Attendez la fin du chrono.</div>`;return;}
+  const it=items[TM.ci];
+  z.innerHTML=`<div class="qnum">Question ${TM.ci+1} / ${items.length}</div><div class="qtext" style="font-size:28px">${esc(it.t)}</div><div class="opts">${it.o.map((o,j)=>`<button class="opt o${it.o.length===2?(j?0:3):j}" onclick="chronoAnswer(${j})"><span class="sh">${it.o.length===2?(j?"✘":"✔"):"▲◆●■"[j]}</span>${esc(o)}</button>`).join("")}</div>`;
 }
 function renderTeam(){
   const s=TM.state;let h=teamHead();
   if(s.phase==="lobby"||s.phase==="menu")h+=`<div class="waiting">👀 Partie rejointe !<br><br>Regardez l'écran central : le prochain jeu va commencer.</div>`;
   else if(s.phase==="intro")h+=`<div class="card center"><div style="font-size:70px">${s.introIc||""}</div><h1 class="big">${esc(s.introGame)}</h1><p style="font-size:21px;line-height:1.5">${esc(s.introRules)}</p></div>`;
-  else if(s.phase==="gameend")h+=`<div class="card center"><h1 class="big">Fin du jeu : ${esc(s.gtitle)}</h1><p class="sub" style="font-size:26px">Votre équipe a gagné <b style="color:var(--amber)">${s.gained?s.gained[TM.team]:0} points</b> dans ce jeu.</p></div>`;
+  else if(s.phase==="gameend")h+=`<div class="card center"><h1 class="big">Fin du jeu : ${esc(s.gtitle)}</h1><p class="sub" style="font-size:26px">Votre équipe a marqué <b style="color:var(--amber)">${s.gained?s.gained[TM.team]:0} points</b> dans ce jeu.</p></div>`;
   else if(s.phase==="final"){const o=[0,1,2].sort((a,b)=>s.teams[b].score-s.teams[a].score);const rk=o.indexOf(TM.team)+1;h+=`<div class="card center"><h1 class="big">${rk===1?"🏆 Victoire !":"Bravo !"}</h1><p style="font-size:30px">Votre équipe termine <b>${rk===1?"1re":rk+"e"}</b> avec ${s.teams[TM.team].score} points.</p></div>`;if(rk===1)confetti();}
   else if(s.phase==="game"&&s.payload){
-    const P=s.payload,qp=s.qphase;
-    h+=`<div class="card"><div class="qhead"><div class="qnum">${esc(s.gtitle)} · ${s.num} / ${s.total}</div><div id="ttw">${qp==="ready"?timerSVG(s.dur,s.dur):""}</div></div>`;
-    if(qp==="ready"){h+=`<div class="waiting">Prêts ? La question arrive…</div></div>`;}
+    const P=s.payload,qp=s.qphase,lab=s.game==="chrono"?"Manche":"";
+    h+=`<div class="card"><div class="qhead"><div class="qnum">${esc(s.gtitle)} · ${lab} ${s.num} / ${s.total}</div><div id="ttw">${qp==="ready"?"":""}</div></div>`;
+    if(qp==="ready"){h+=`<div class="waiting">${s.game==="mise"&&s.wagers?"Mises enregistrées : votre mise est de <b style='color:var(--amber)'>"+s.wagers[TM.team]+" points</b>.<br><br>La question arrive…":"Prêts ? Ça va commencer…"}</div></div>`;}
+    else if(qp==="wager"){
+      const mx=s.wmax[TM.team];
+      h+=`<div id="tz"><div class="qtext">💰 Combien misez-vous ? (maximum ${mx} points)</div><div class="row">${[0,.25,.5,1].map(f=>Math.round(mx*f)).map(v=>`<button class="btn ghost" onclick="setWager(${v})">${v}</button>`).join("")}</div><div class="row mt"><input id="wgIn" type="number" min="0" max="${mx}" value="${Math.round(mx/2)}" style="max-width:220px;font-size:32px;text-align:center"><button class="btn amb" onclick="sendWager()">Valider ma mise</button></div></div><div id="tmsg"></div></div>`;
+    }
     else if(qp==="question"){
       h+=`<div id="tz">`;
-      if(s.game==="qcm")h+=`<div class="qtext">${esc(P.t)}</div><div class="opts">${P.o.map((o,j)=>`<button class="opt o${j}" onclick="this.classList.add('sel');sendAns(${j})"><span class="sh">${"▲◆●■"[j]}</span>${"ABCD"[j]}. ${esc(o)}</button>`).join("")}</div>`;
+      if(QCMLIKE.includes(s.game))h+=`<div class="qtext">${esc(P.t)}</div><div class="opts">${P.o.map((o,j)=>`<button class="opt o${j}" onclick="this.classList.add('sel');sendAns(${j})"><span class="sh">${"▲◆●■"[j]}</span>${"ABCD"[j]}. ${esc(o)}</button>`).join("")}</div>`;
       if(s.game==="vf")h+=`<div class="qtext">${esc(P.t)}</div><div class="opts"><button class="opt o3" onclick="this.classList.add('sel');sendAns(true)"><span class="sh">✔</span>VRAI</button><button class="opt o0" onclick="this.classList.add('sel');sendAns(false)"><span class="sh">✘</span>FAUX</button></div>`;
-      if(s.game==="num")h+=`<div class="qtext">${esc(P.t)}</div><div class="row"><input id="numIn" type="number" step="any" style="max-width:260px;font-size:34px;text-align:center"><b style="font-size:24px">${esc(P.u)}</b><button class="btn amb" onclick="const v=document.getElementById('numIn').value;if(v!=='')sendAns(v)">Valider</button></div>`;
+      if(s.game==="num")h+=`<div class="qtext">${esc(P.t)}</div><div class="row"><input id="numIn" type="number" step="any" style="max-width:300px;font-size:34px;text-align:center"><b style="font-size:24px">${esc(P.u)}</b><button class="btn amb" onclick="const v=document.getElementById('numIn').value;if(v!=='')sendAns(v)">Valider</button></div>`;
       if(s.game==="mot")h+=`<div class="qtext">${esc(P.d)}</div><div class="mask" id="maskT">${esc(s.mask)}</div><div class="row"><input id="motIn" placeholder="Votre mot (un seul essai)" style="max-width:460px;font-size:26px;text-transform:uppercase"><button class="btn amb" onclick="const v=document.getElementById('motIn').value.trim();if(v)sendAns(v)">Valider</button></div>`;
+      if(s.game==="qsj")h+=`<div class="qtext">Qui suis-je ?</div><div id="cluesT">${cluesHTML(s.clues)}</div><div class="row mt"><input id="qsjIn" placeholder="Votre réponse (un seul essai)" style="max-width:460px;font-size:24px;text-transform:uppercase"><button class="btn amb" onclick="const v=document.getElementById('qsjIn').value.trim();if(v)sendAns(v)">Valider</button></div>`;
       if(s.game==="tri"){if(!TM.tri.length)TM.tri=P.items.map(()=>null);h+=`<div class="qtext" style="font-size:26px">${esc(P.t)}</div>${P.items.map((it,j)=>`<div class="triitem"><span>${esc(it)}</span><span class="bt">${P.c.map((c,ci)=>`<button id="tb${j}_${ci}" class="${TM.tri[j]===ci?"on":""}" onclick="triSet(${j},${ci})">${esc(c)}</button>`).join("")}</span></div>`).join("")}<button class="btn amb mt" onclick="sendAns(TM.tri.map(x=>x??-1))">Valider mon classement</button>`;}
+      if(s.game==="ordre"){const n=P.items.length;if(!TM.ord.length)TM.ord=P.items.map(()=>null);h+=`<div class="qtext" style="font-size:26px">${esc(P.t)}</div>${P.items.map((it,j)=>`<div class="triitem"><span>${esc(it)}</span><select style="width:110px" onchange="ordSet(${j},this.value)"><option value="">Rang…</option>${Array.from({length:n},(_,r)=>`<option value="${r}" ${TM.ord[j]===r?"selected":""}>${r+1}</option>`).join("")}</select></div>`).join("")}<button class="btn amb mt" onclick="sendAns(TM.ord.map(x=>x??-1))">Valider mon ordre</button>`;}
       h+=`</div><div id="tmsg"></div></div>`;
     }
     else if(qp==="buzz"||qp==="buzzed"){
@@ -670,19 +1056,24 @@ function renderTeam(){
     }
     else if(qp==="reveal"){
       const r=s.results&&s.results[TM.team];
+      const qtxt=s.game==="qsj"?"Qui suis-je ?":s.game==="chrono"?"Fin de la manche":(P.t||P.d||"");
       if(s.game==="buzz")h+=`<div class="qtext">${esc(P.t)}</div><div class="verdict ${r?"ok":"neu"}">${r?"✔ +150 points !":"Réponse : "+esc(s.correct)}</div>`;
-      else h+=`<div class="qtext">${esc(P.t||P.d)}</div><div class="verdict ${r&&r.ok?"ok":(r&&r.part?"neu":"ko")}">${r&&r.ok?"✔ Bravo !":(r&&r.part?"◐ Presque !":"✘ Raté")} <span style="font-size:30px">+${r?r.pts:0} pts</span></div>${s.correct?`<div class="answer-box">Bonne réponse : ${esc(s.correct)}</div>`:""}`;
+      else h+=`<div class="qtext">${esc(qtxt)}</div><div class="verdict ${r&&r.ok?"ok":(r&&r.part?"neu":"ko")}">${r&&r.ok?"✔ Bravo !":(r&&r.part?"◐ "+esc(r.label):"✘ Raté")} <span style="font-size:30px">${r&&r.pts<0?"":"+"}${r?r.pts:0} pts</span></div>${s.correct&&s.game!=="tri"?`<div class="answer-box">Bonne réponse : ${esc(s.correct)}</div>`:""}`;
       h+=`</div>`;
     }
   } else h+=`<div class="waiting">Regardez l'écran central…</div>`;
   app().innerHTML=h;
+  if(s.phase==="game"&&s.qphase==="question"&&s.game==="chrono")renderChronoItem();
   if(s.phase==="game"&&s.qphase==="question"&&TM.sent)lockTeam("✔ Réponse envoyée. Regardez l'écran central !");
+  if(s.phase==="game"&&s.qphase==="wager"&&TM.wsent)lockTeam("✔ Mise envoyée !");
   teamTimer();
 }
 function triSet(j,ci){if(TM.sent)return;TM.tri[j]=ci;TM.state.payload.c.forEach((c,k)=>{const b=document.getElementById(`tb${j}_${k}`);if(b)b.classList.toggle("on",k===ci);});}
+function ordSet(j,v){if(TM.sent)return;TM.ord[j]=v===""?null:+v;}
 
 /* ====================================================================== */
 home();
+
 </script>
 </body>
 </html>
