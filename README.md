@@ -2,8 +2,8 @@
 
 Jeu en direct à trois équipes (BTS Professions immobilières) : un PC central projeté, un PC par équipe.
 
-- **index.html** : version longue (11 mini-jeux, près de 400 questions)
-- **version-courte.html** : première version (6 mini-jeux)
+- **index.html** : version courte (6 mini-jeux)
+- **version-longue.html** : version longue (11 mini-jeux, près de 400 questions)
 
 Synchronisation par Supabase Realtime (Broadcast), sans table.
 
